@@ -2,429 +2,642 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Aether Arena - Elyra</title>
 
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* NAVBAR FONT */
-.nav-links a {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 500;
+/* ===== GLOBAL ===== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* BUTTON TEXT */
-.btn-primary,
-.btn-secondary {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-}
-
-/* NAV LINK UNDERLINE EFFECT */
-.nav-links a {
-  position: relative;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: #00ffc8;
-  transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 35px;
-  left: 0;
-  background: rgba(15,15,15,0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 8px 0;
-  display: none;
-  min-width: 180px;
-  border: 1px solid rgba(0,255,200,0.2);
-  box-shadow: 0 0 20px rgba(0,255,200,0.15);
-}
-
-/* SHOW DROPDOWN */
-.dropdown:hover .dropdown-menu {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropdown-menu li {
-  list-style: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-/* HOVER EFFECT INSIDE DROPDOWN */
-.dropdown-menu a:hover {
-  background: rgba(0,255,200,0.1);
-  color: #00ffc8;
-  transform: translateX(5px);
-}
-
-            /* NAVBAR */
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                padding: 18px 6%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: rgba(5,5,5,0.9);
-                background-filter: blur(10px);
-                border-bottom: 1px solid rgba(0,255,200,0.2);
-                z-index: 1000;
-            }
-
-            .logo {
-                font-size: 22px;
-                font-weight: 700;
-                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-decoration: none;
-            }
-
-            .nav-links {
-                list-style: none;
-                display: flex;
-                gap: 20px;
-            }
-
-            .nav-links a {
-                color: #ccc;
-                text-decoration: none;
-                font-size: 14px;
-                transition: 0.3s;
-            }
-
-            .nav-links a:hover {
-                color: #00ffc8;
-            }
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
+body{
+  font-family:'Inter',sans-serif;
+  color:#E5E7EB;
+  overflow-x:hidden;
+  padding-top:110px;
 
   background:
-    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.8), transparent),
-    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.9), transparent),
-    rgba(0,0,0,0.6);
+    radial-gradient(circle at top left, rgba(139,92,246,0.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(103,232,249,0.18), transparent 30%),
+    linear-gradient(135deg,#0B1020,#111827,#0F172A);
 
-  z-index: -1;
+  background-attachment:fixed;
 }
 
-@keyframes move1 {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(200px,150px); }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-5;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  pointer-events:none;
+  z-index:-1;
 }
 
-@keyframes move2 {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(-150px,-200px); }
+body::after{
+  content:"";
+  position:fixed;
+
+  top:-150px;
+  right:-150px;
+
+  width:500px;
+  height:500px;
+
+  background:radial-gradient(circle,
+  rgba(168,85,247,0.18),
+  transparent 70%);
+
+  filter:blur(90px);
+
+  z-index:-5;
 }
 
+/* ===== NAVBAR ===== */
 
-@keyframes particlesMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(-300px,-300px); }
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:22px 6%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(10,15,30,0.78);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  z-index:9999;
 }
 
-/* HERO */
-.hero {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.back-btn {
-  color: #00ffc8;
-}
-
-.hero h1 {
-  font-size: 52px;
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.logo{
+.logo-wrap{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  text-decoration:none;
 }
 
 .logo-img{
-  width:32px;
+  width:34px;
 }
 
 .logo-text{
-  font-size:20px;
-  font-weight:600;
-  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  font-size:24px;
+  font-family:'Orbitron';
+  font-weight:700;
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
   -webkit-background-clip:text;
   color:transparent;
 }
 
-.hero p {
-  color: #aaa;
-  font-size: 16px;
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  list-style:none;
 }
 
-/* DESCRIPTION */
-.desc {
-  max-width: 950px;
-  margin: 30px auto;
-  margin-bottom: 100px;
-  background: #111 solid;
-  padding: 25px;
-  border-radius: 12px;
-  color: #bbb;
-  text-align: center;
-  line-height: 1.6;
-  border: 1px solid #222;
-}
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 28px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 40px;
-  text-align: center;
+.nav-links a{
+  text-decoration:none;
+  color:#CBD5E1;
+
+  font-size:15px;
+  font-weight:500;
+
+  transition:0.3s;
+
+  position:relative;
 }
 
-/* GRID */
-.grid {
-  margin-top: 20px;
-  gap: 25px;
+.nav-links a::after{
+  content:"";
+  position:absolute;
+
+  left:0;
+  bottom:-5px;
+
+  width:0%;
+  height:2px;
+
+  background:#67E8F9;
+
+  transition:0.3s;
 }
 
-.card {
-  text-align: center;
-  padding: 25px;
-  font-size: 28px;
-background: #111 !important;
-  border: 1px solid #222;
+.nav-links a:hover::after{
+  width:100%;
 }
 
-.card h3 {
-  margin-top: 15px;   /* logo → heading gap */
-  margin-bottom: 10px;
+.nav-links a:hover{
+  color:#67E8F9;
 }
 
-.card p {
-  margin-top: 10px;    /* heading → desc gap */
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+  position:relative;
 }
 
-/* CARD TEXT */
-.card p {
-  margin-top: 10px;
-  color: #aaa;
-  font-size: 14px;
-  line-height: 1.4;
+.dropdown-menu{
+  position:absolute;
+  top:40px;
+  left:0;
+
+  background:rgba(15,20,35,0.92);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:16px;
+
+  display:none;
+
+  padding:10px;
+
+  min-width:210px;
+
+  backdrop-filter:blur(16px);
+
+  box-shadow:
+  0 0 30px rgba(103,232,249,0.08);
 }
 
-.floating-logo {
-  position: fixed;
-  top: 100px;
-  right: 30px;
-  width: 120px;
-  opacity: 1;
-  animation: float 3s ease-in-out infinite;
+.dropdown-menu li{
+  list-style:none;
 }
 
-/* FLOAT ANIMATION */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
+.dropdown-menu a{
+  display:block;
+
+  padding:12px 14px;
+
+  color:#CBD5E1;
+
+  border-radius:10px;
+
+  transition:0.3s;
 }
 
-body {
-  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000000);
-  background-image: 
-    radial-gradient(circle at 80% 20%, rgba(138,43,226,0.15), transparent),
-    radial-gradient(circle at 20% 80%, rgba(0,255,200,0.1), transparent);
+.dropdown-menu a:hover{
+  color:#67E8F9;
+
+  background:
+  rgba(103,232,249,0.08);
+
+  transform:translateX(4px);
 }
 
-.card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 25px rgba(138,43,226,0.3);
+.dropdown:hover .dropdown-menu{
+  display:block;
 }
 
-/* LOCK BAR */
-.lock-bar {
-  margin-top: 50px;
-  padding: 15px;
-  border-radius: 30px;
-  text-align: center;
-  background: rgba(255,0,0,0.1);
-  border: 1px solid rgba(255,0,0,0.4);
-  color: #ff4d4d;
-  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+/* ===== BACK BTN ===== */
+
+.back-btn{
+  position:fixed;
+
+  top:105px;
+  left:30px;
+
+  padding:12px 24px;
+
+  border: 1px solid rgba(0,255,200,0.4);
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,0.06);
+
+  backdrop-filter:blur(12px);
+
+  color:#67E8F9;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  z-index:9999;
 }
 
+.back-btn:hover{
+  transform:translateY(-3px);
 
-.main-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  background:rgba(103,232,249,0.1);
 }
 
-.notice-item {
-  background: rgba(138,43,226,0.08);  /* 🔥 purple tint */
-  border: 1px solid rgba(138,43,226,0.2);
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 20px;
+/* ===== HERO ===== */
+
+.hero{
+  text-align:center;
+  padding:30px 20px 50px;
+  z-index:10;
+  position:relative;
 }
 
-.project-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
+.hero h1{
+  font-size:72px;
 
-  display: flex;
-  flex-direction: column;
-  gap: 12px;   /* 🔥 proper spacing */
+  font-family:'Orbitron';
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+
+  margin-bottom:18px;
 }
 
+.hero p{
+  color:#CBD5E1;
 
-/* 🔥 PROGRESS BAR */
-.progress {
-  height: 6px;
-  background: #222;
-  border-radius: 10px;
+  font-size:18px;
 }
 
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border-radius: 10px;
+/* ===== FLOATING LOGO ===== */
+
+.floating-logo{
+  position:fixed;
+
+  right:30px;
+  top:120px;
+
+  width:110px;
+
+  opacity:0.8;
+
+  animation:float 4s ease-in-out infinite;
 }
 
-.project-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+  100%{transform:translateY(0);}
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  transition: 0.3s;
+/* ===== DESCRIPTION ===== */
+
+.desc{
+  width:88%;
+  margin:0 auto 60px;
+
+  background:rgba(255,255,255,0.05);
+
+  backdrop-filter:blur(14px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:28px;
+
+  padding:40px;
+
+  line-height:2;
+
+  color:#CBD5E1;
+
+  font-size:16px;
+
+  z-index:10;
+
+  position:relative;
 }
 
-/* 🔥 LIVE BADGE */
+/* ===== TITLES ===== */
+
+.section-title{
+  text-align:center;
+
+  margin-bottom:35px;
+
+  font-size:34px;
+
+  font-family:'Orbitron';
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+
+  z-index:10;
+
+  position:relative;
+}
+
+/* ===== GRID ===== */
+
+.grid{
+  width:88%;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+  gap:28px;
+
+  margin-bottom:40px;
+
+  z-index:10;
+
+
+}
+
+/* ===== CARDS ===== */
+
+.card{
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:28px;
+
+  padding:35px;
+
+  text-align:center;
+
+  transition:0.35s ease;
+}
+
+.card:hover{
+  transform:
+  translateY(-8px)
+  rotate(-1deg);
+
+  border-color:
+  rgba(103,232,249,0.25);
+
+  box-shadow:
+  0 0 35px rgba(103,232,249,0.12);
+}
+
+.card h3{
+  margin:18px 0 14px;
+
+  font-size:26px;
+
+  font-family:'Orbitron';
+}
+
+.card p{
+  color:#CBD5E1;
+
+  line-height:1.8;
+}
+
+/* ===== MAIN CARDS ===== */
+
+.main-card{
+  width:88%;
+
+  margin:40px auto;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:28px;
+
+  padding:35px;
+
+  z-index:10;
+
+  position:relative;
+}
+
+.main-card h2{
+  margin-bottom:25px;
+
+  font-size:30px;
+
+  font-family:'Orbitron';
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ===== NOTICE ===== */
+
+.notice-item{
+  background:rgba(255,255,255,0.04);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:20px;
+
+  padding:24px;
+
+  margin-top:20px;
+}
+
+.notice-item h3{
+  margin-bottom:10px;
+}
+
+/* ===== PROJECTS ===== */
+
+.project-card{
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:24px;
+
+  padding:24px;
+
+  position:relative;
+
+  transition:0.3s;
+}
+
+.project-card:hover{
+  transform:translateY(-8px);
+
+  box-shadow:
+  0 0 30px rgba(103,232,249,0.12);
+}
+
+.project-card h3{
+  margin-bottom:14px;
+
+  font-size:24px;
+
+  font-family:'Orbitron';
+}
+
+.project-card p{
+  margin-bottom:10px;
+
+  color:#CBD5E1;
+
+  line-height:1.7;
+}
+
+/* ===== BADGE ===== */
+
 .badge{
   position:absolute;
-  top:12px;
-  right:12px;
-  background:#63e08a;
-  color:#000;
-  font-size:10px;   /* pehle bada tha */
-  padding:4px 8px;  /* small */
+
+  top:16px;
+  right:16px;
+
+  padding:6px 12px;
+
   border-radius:999px;
-  font-weight:600;
-  width: 30px;
-  height: 30px;
+
+  background:#67E8F9;
+
+  color:#000;
+
+  font-size:12px;
+
+  font-weight:700;
 }
 
-.badge-card {
-  box-shadow: 0 0 20px rgba(0,255,150,0.3);
+/* ===== PROGRESS ===== */
+
+.progress{
+  width:100%;
+  height:8px;
+
+  background:rgba(255,255,255,0.08);
+
+  border-radius:999px;
+
+  margin:18px 0;
 }
 
-/* 🔥 PROGRESS BAR */
-.progress {
-  height: 6px;
-  background: #222;
-  border-radius: 10px;
-  margin: 10px 0;
+.progress-bar{
+  height:100%;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
 }
 
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border-radius: 10px;
+/* ===== BUTTONS ===== */
+
+.view-btn,
+.project-card button{
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:18px;
+
+  margin-top:10px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  transition:0.3s;
 }
 
-.view-btn {
-  width: 100%;
-  padding: 10px;
-  border-radius: 25px;
+.view-btn{
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
 
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border: none;
-
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
+  color:#000;
 }
 
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #081420, #03060d);
-  z-index: -1;
-  filter: blur(0.5px);
+.project-card button{
+  background:rgba(255,255,255,0.06);
+
+  color:#E5E7EB;
+
+  border:1px solid rgba(255,255,255,0.08);
 }
 
+.project-card button:hover{
+  background:rgba(103,232,249,0.12);
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .nav-links{
+    gap:14px;
+  }
+
+  .nav-links a{
+    font-size:13px;
+  }
+
+  .floating-logo{
+    display:none;
+    z-index:9999;
+    position:fixed;
+  }
+
+}
 
 </style>
 </head>
 
 <body>
-<canvas id="bg"></canvas>
 
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
   <a href="index.html" class="logo-wrap">
@@ -433,203 +646,189 @@ body {
   </a>
 
   <ul class="nav-links">
+
     <li><a href="about.html">About</a></li>
+
     <li><a href="events.html">Events</a></li>
+
     <li><a href="team.html">Team</a></li>
+
     <li><a href="founders.html">Founders</a></li>
+
     <li><a href="gallery.html">Gallery</a></li>
 
     <li class="dropdown">
+
       <a href="#">Skill Arenas ▾</a>
+
       <ul class="dropdown-menu">
+
         <li><a href="helix-lab.html">Helix Lab</a></li>
+
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
+
         <li><a href="appocalypse.html">Appocalypse</a></li>
+
         <li><a href="aether-arena.html">Aether Arena</a></li>
+
       </ul>
+
     </li>
 
-    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
 
-    <!-- BEFORE LOGIN -->
-    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
-    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+    <li id="joinBtn">
+      <a href="join.html">Join</a>
+    </li>
 
-    <!-- LOGOUT -->
+    <li id="loginBtn">
+      <a href="login.html">Login</a>
+    </li>
+
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
+
 </nav>
+
 <img src="assets/images/arther-arena.png" class="floating-logo">
 
-<!-- BACK -->
 <button class="back-btn" onclick="location.href='index.html'">← Back</button>
 
-<div class="container">
-
 <!-- HERO -->
+
 <div class="hero">
+
   <h1>Aether Arena</h1>
-  <p>Game Development, Competitive Coding & Interactive Experiences</p>
+
+  <p>
+    game development, creative coding & interactive experiences
+  </p>
+
 </div>
 
 <!-- DESCRIPTION -->
+
 <div class="desc">
-  Aether Arena is the creative hub of Elyra where imagination meets reality.  
 
-  This is where members step beyond playing games and start building actual working games.
+  Aether Arena is the place inside Elyra where ideas turn into playable experiences.
 
-  From designing immersive game worlds to coding interactive mechanics, Arther Arena focuses on hand-on game development.
-  You don't just play games -- you create them yourself.
+  Members here build games, experiment with mechanics, create worlds and learn how real interactive systems work.
 
-  Whether it's building 2D/3D games, designing gameplay, systems, or creating unique player experiences, this space is for those who want to shape the future of gaming.!
+  From pixel games to multiplayer concepts, this arena focuses on creativity, storytelling and hands-on development.
+
 </div>
 
 <!-- SECTION -->
-<h2 class="section-title">🚀 What You'll Work On</h2>
+
+<h2 class="section-title">
+🚀 What You'll Work On
+</h2>
 
 <div class="container">
-  <div class="grid">
 
-    <div class="card">
-      🎮
-      <h3>Game Design</h3>
-      <p>
-        Create game concepts, storylines, and player experiences.
-        Learn how engaging games are designed from scratch.
-      </p>
-    </div>
+<div class="grid">
 
-    <div class="card">
-      🧠
-      <h3>Gameplay Mechanics</h3>
-      <p>
-        Build core systems like movement, physics, and controls.
-        Make your games interactive and fun to play.
-      </p>
-    </div>
-
-    <div class="card">
-      💻
-      <h3>Game Development</h3>
-      <p>
-        Code games using engines and tools.
-        Turn ideas into real playable experiences.
-      </p>
-    </div>
-
-    <div class="card">
-      🌐
-      <h3>Multiplayer Systems</h3>
-      <p>
-        Design online features and multiplayer gameplay.
-        Learn how players connect and intereact in real time.
-      </p>
-    </div>
-
-    <div class="card">
-      🎨
-      <h3>Game Art & UI</h3>
-      <p>
-        Design visulas, characters, and user interfaces.
-        Make your games look attractive and professional.
-      </p>
-    </div>
-
-    <div class="card">
-      🚀
-      <h3>Game Challenges</h3>
-      <p>
-        Participate in game jams and competitions.
-        Test your skills by building games under pressure
-      </p>
-    </div>
-
+  <div class="card">
+    🎮
+    <h3>Game Design</h3>
+    <p>Create ideas, mechanics and immersive player experiences.</p>
   </div>
 
-  <div class="main-card">
+  <div class="card">
+    🧠
+    <h3>Gameplay Mechanics</h3>
+    <p>Build systems like controls, movement and interactions.</p>
+  </div>
+
+  <div class="card">
+    💻
+    <h3>Game Development</h3>
+    <p>Turn concepts into playable games using code and engines.</p>
+  </div>
+
+  <div class="card">
+    🌐
+    <h3>Multiplayer Systems</h3>
+    <p>Create online experiences and real-time interactions.</p>
+  </div>
+
+  <div class="card">
+    🎨
+    <h3>Game Art & UI</h3>
+    <p>Design visuals, interfaces and unique game styles.</p>
+  </div>
+
+  <div class="card">
+    🚀
+    <h3>Game Challenges</h3>
+    <p>Participate in jams, competitions and creative experiments.</p>
+  </div>
+
+</div>
+</div>
+<!-- NOTICE -->
+
+<div class="main-card">
+
   <h2>📢 Notice Board</h2>
 
   <div class="notice-item">
-    <h3>Workshop: Arduino Robotics Fundamentals</h3>
-    <p>Learn the basics of building autonomous robots. This Saturday at 3 PM.</p>
+    <h3>Workshop: Game Physics Basics</h3>
+    <p>Saturday • 4 PM • Online Session</p>
   </div>
 
   <div class="notice-item">
-    <h3>Project Showcase Next Month</h3>
-    <p>Register before end of this week.</p>
+    <h3>Upcoming Game Jam</h3>
+    <p>Build a game in 48 hours with your team.</p>
   </div>
+
 </div>
 
-  <div class="main-card">
-  <h2>🔥 Projects</h2>
+<!-- PROJECTS -->
 
-  <div class="grid">
+<div class="main-card">
 
-   <div class="project-card">
-  <span class="badge">LIVE</span>
+<h2>Projects</h2>
 
-  <h3>Sprig</h3>
-  <p>Build small JavaScript-based pixel games and run them on a handheld console.</p>
-  <p>Difficulty: Beginner</p>
-  <p>Time: 2-7 Days</p>
-  <p>Rewards: Free Sprig Console (on which you'll be able to play its games)</p>
-  <p></p>
+<div class="grid">
 
-  <div class="progress">
-    <div class="progress-bar" style="width:50%"></div>
-  </div>
+<div class="project-card">
 
-  <a href="https://sprig.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
+<span class="badge">LIVE</span>
 
-  <button onclick="addToDashboard({ 
-  id: 'sprig',
-  name: 'Sprig',           
-  desc: 'Build small JavaScript-based pixel games and run them on a handheld console',
-  difficulty: 'Beginner',
-  time: '2-7 Days',
-  reward: 'Free Sprig Console',
-  link: 'https://sprig.hackclub.com',
-}, this)">
-Add to Dashboard
+<h3>Sprig</h3>
+
+<p>Build small JavaScript-based pixel games.</p>
+
+<p>Difficulty: Beginner</p>
+
+<p>Time: 2–7 Days</p>
+
+<p>Reward: Free Sprig Console</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:50%"></div>
+</div>
+
+<a href="https://sprig.hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
 </button>
+</a>
 
-</div>
-
-    <div class="project-card">
-  <span class="badge">LIVE</span>
-
-  <h3>Hack Club: The Game</h3>
-  <p>Contribute to or build interactive experiences around Hack Club through game development.</p>
-  <p>Difficulty: Intermediate</p>
-  <p>Time: 3-10 Days</p>
-  <p>Rewards: Swag, recognition</p>
-  <p> </p>
-      <p></p>
-      <p></p>
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
-  </div>
-
-  <a href="https://game.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
-
-  <button onclick="addToDashboard({
-  id: 'hack-club-the-game',
-  name: 'Hack Club: The Game',
-  desc: 'Contribute to or build interactive experiences around Hack Club through game development.',
-  difficulty: 'Intermediate',
-  time: '3-10 Days',
-  reward: 'Swag, recognition',
-  link: 'https://game.hackclub.com'
+<button onclick="addToDashboard({
+id:'sprig',
+name:'Sprig',
+desc:'Build JavaScript pixel games.',
+difficulty:'Beginner',
+time:'2–7 Days',
+reward:'Sprig Console',
+link:'https://sprig.hackclub.com'
 }, this)">
 Add to Dashboard
 </button>
@@ -637,130 +836,198 @@ Add to Dashboard
 </div>
 
 <div class="project-card">
-  <span class="badge">LIVE</span>
 
-  <h3>Macondo</h3>
-  <p>Create creative coding projects, including story-driven or experimental games.</p>
-  <p>Difficulty: Intermediate</p>
-  <p>Time: 1-3 Weeks</p>
-  <p>Rewards: Get Anything you want from hours of your work (eg- Macbook Neo/Air)</p>
+<span class="badge">LIVE</span>
 
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
-  </div>
+<h3>Hack Club: The Game</h3>
 
-  <a href="https://macondo.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
+<p>Interactive experiences through game development.</p>
 
-  <button onclick="addToDashboard({ 
-  id: 'macondo',
-  name: 'Macondo',
-  desc: 'Create creative coding projects, including story-driven or experimental games.',
-  difficulty: 'Intermediate',
-  time: '1-3 Weeks',
-  reward: 'Get Anything you want from hours of your work (eg- Macbook Neo/Air)',
-  link: 'https://macondo.hackclub.com',
+<p>Difficulty: Intermediate</p>
+
+<p>Time: 3–10 Days</p>
+
+<p>Reward: Swag & Recognition</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:65%"></div>
+</div>
+
+<a href="https://game.hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button onclick="addToDashboard({
+id:'hack-game',
+name:'Hack Club: The Game',
+desc:'Interactive game experiences.',
+difficulty:'Intermediate',
+time:'3–10 Days',
+reward:'Swag',
+link:'https://game.hackclub.com'
 }, this)">
 Add to Dashboard
 </button>
 
 </div>
+
+
+<!-- ADD THESE 4 PROJECT CARDS BELOW HACK CLUB THE GAME -->
 
 <div class="project-card">
-  <span class="badge">LIVE</span>
 
-  <h3>Horizons</h3>
-  <p>Develop a large-scale, long-term project such as a full game with mentorship and support.</p>
-  <p>Difficulty: Advanced</p>
-  <p>Time: 1–3 Months</p>
-  <p>Rewards: Get Anything you want from hours of your work - Grants, Products, Recognization</p>
+<span class="badge">LIVE</span>
 
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
-  </div>
+<h3>Macondo</h3>
 
-  <a href="https://horizons.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
+<p>Create immersive creative experiences and storytelling systems.</p>
 
-  <button onclick="addToDashboard({ 
-  id: 'horizons',
-  name: 'Horizons',                
-  desc: 'Develop a large-scale, long-term project such as a full game with mentorship and support.',
-  difficulty: 'Advanced',
-  time: '1–3 Months',
-  reward: 'Get Anything you want from hours of your work - Grants, Products, Recognization',
-  link: 'https://horizons.hackclub.com',
+<p>Difficulty: Intermediate</p>
+
+<p>Time: 4–12 Days</p>
+
+<p>Reward: Community Recognition</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:70%"></div>
+</div>
+
+<a href="https://macondo.hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button onclick="addToDashboard({
+id:'macondo',
+name:'Macondo',
+desc:'Creative storytelling & interactive systems.',
+difficulty:'Intermediate',
+time:'4–12 Days',
+reward:'Recognition',
+link:'https://macondo.hackclub.com'
 }, this)">
 Add to Dashboard
 </button>
 
 </div>
+
+<!-- HORIZONS -->
 
 <div class="project-card">
-  <span class="badge">LIVE</span>
 
-  <h3>Aces</h3>
-  <p>Complete fast-paced build challenges where quick game prototypes can be created.</p>
-  <p>Difficulty: Intermediate</p>
-  <p>Time: 1–2 Days</p>
-  <p>Rewards: Small Swags, Perks!</p>
-  <p> </p>
-      <p></p>
-      <p></p>
+<span class="badge">NEW</span>
 
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
-  </div>
+<h3>Horizons</h3>
 
-  <a href="https://aces.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
+<p>Ship creative websites and experimental internet projects.</p>
 
-  <button onclick="addToDashboard({ 
-  id: 'aces',
-  name: 'Aces',                
-  desc: 'Complete fast-paced build challenges where quick game prototypes can be created.',
-  difficulty: 'Intermediate',
-  time: '1–2 Days',
-  reward: 'Small Swags, Perks!',
-  link: 'https://aces.hackclub.com',
+<p>Difficulty: Beginner–Intermediate</p>
+
+<p>Time: 3–8 Days</p>
+
+<p>Reward: Swag + Features</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:55%"></div>
+</div>
+
+<a href="https://horizons.hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button onclick="addToDashboard({
+id:'horizons',
+name:'Horizons',
+desc:'Experimental web experiences.',
+difficulty:'Beginner–Intermediate',
+time:'3–8 Days',
+reward:'Swag + Features',
+link:'https://horizons.hackclub.com'
 }, this)">
 Add to Dashboard
 </button>
 
 </div>
+
+<!-- ACES -->
 
 <div class="project-card">
-  <span class="badge">LIVE</span>
 
-  <h3>Milky Way</h3>
-  <p>Build and showcase experimental or creative games.</p>
-  <p>Difficulty: Intermediate</p>
-  <p>Time: 1–2 Weeks</p>
-  <p>Rewards: Swag, Spotlight</p>
-  <p> </p>
-      <p></p>
-      <p></p>
-      <p> </p>
+<span class="badge">HOT</span>
 
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
-  </div>
+<h3>Aces</h3>
 
-  <a href="https://milkyway.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
+<p>Competitive game dev challenges and advanced mechanics building.</p>
 
-  <button onclick="addToDashboard({ 
-  id: 'milky-way',
-  name: 'Milky Way',      
-  desc: 'Build and showcase experimental or creative games.',
-  difficulty: 'Intermediate',
-  time: '1–2 Weeks',
-  reward: 'Swag, Spotlight',          
-  link: 'https://milkyway.hackclub.com',
+<p>Difficulty: Advanced</p>
+
+<p>Time: 7–20 Days</p>
+
+<p>Reward: Exclusive Rewards</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:80%"></div>
+</div>
+
+<a href="https://hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button onclick="addToDashboard({
+id:'aces',
+name:'Aces',
+desc:'Competitive advanced game development.',
+difficulty:'Advanced',
+time:'7–20 Days',
+reward:'Exclusive Rewards',
+link:'https://hackclub.com'
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<!-- MILKY WAY -->
+
+<div class="project-card">
+
+<span class="badge">LIVE</span>
+
+<h3>Milky Way</h3>
+
+<p>Explore creative space-inspired game worlds and visual experiments.</p>
+
+<p>Difficulty: Intermediate</p>
+
+<p>Time: 5–14 Days</p>
+
+<p>Reward: Featured Showcase</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:68%"></div>
+</div>
+
+<a href="https://hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button onclick="addToDashboard({
+id:'milky-way',
+name:'Milky Way',
+desc:'Space-inspired creative game projects.',
+difficulty:'Intermediate',
+time:'5–14 Days',
+reward:'Featured Showcase',
+link:'https://hackclub.com'
 }, this)">
 Add to Dashboard
 </button>
@@ -768,170 +1035,34 @@ Add to Dashboard
 </div>
 
 </div>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-
-const app = initializeApp({
-  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
-  authDomain:"nova-club-vinayak.firebaseapp.com",
-  projectId:"nova-club-vinayak"
-});
-
-const auth = getAuth(app);
-
-// 🔥 NAVBAR CONTROL
-onAuthStateChanged(auth, (user) => {
-
-  const loginBtn = document.getElementById("loginBtn");
-  const joinBtn = document.getElementById("joinBtn");
-  const dashboardLink = document.getElementById("dashboardLink");
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  if(user){
-    if(loginBtn) loginBtn.style.display="none";
-    if(joinBtn) joinBtn.style.display="none";
-    if(dashboardLink) dashboardLink.style.display="block";
-    if(logoutBtn) logoutBtn.style.display="block";
-  } else {
-    if(loginBtn) loginBtn.style.display="block";
-    if(joinBtn) joinBtn.style.display="block";
-    if(dashboardLink) dashboardLink.style.display="none";
-    if(logoutBtn) logoutBtn.style.display="none";
-  }
-});
-
-// 🔥 LOGOUT
-const logoutBtn = document.getElementById("logoutBtn");
-if(logoutBtn){
-  logoutBtn.onclick = async ()=>{
-    await signOut(auth);
-    location.reload();
-  };
-}
-
-// ==========================
-// 🔥 HIGH DENSITY BACKGROUND
-// ==========================
-
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-const COUNT = 110; // 🔥 increased particles
-
-class Particle {
-  constructor(){
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
-  }
-
-  move(){
-    this.x += this.vx;
-    this.y += this.vy;
-
-    if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-  }
-
-  draw(){
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, 0.8, 0, Math.PI*2);
-    ctx.fillStyle = "rgba(0,255,255,0.6)";
-    ctx.fill();
-  }
-}
-
-for(let i=0;i<COUNT;i++){
-  particles.push(new Particle());
-}
-
-function connect(){
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
-
-      let dx = particles[i].x - particles[j].x;
-      let dy = particles[i].y - particles[j].y;
-      let dist = Math.sqrt(dx*dx + dy*dy);
-
-      if(dist < 120){ // 🔥 increased connection range
-
-        // bright lines
-        ctx.beginPath();
-        ctx.strokeStyle = "rgba(0,255,255,0.7)";
-        ctx.lineWidth = 1.5;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-
-        // mesh triangles
-        for(let k=j+1;k<particles.length;k++){
-          let dx2 = particles[j].x - particles[k].x;
-          let dy2 = particles[j].y - particles[k].y;
-          let d2 = Math.sqrt(dx2*dx2 + dy2*dy2);
-
-          if(d2 < 180){
-            ctx.beginPath();
-            ctx.fillStyle = "rgba(0,255,255,0.1)";
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.lineTo(particles[k].x, particles[k].y);
-            ctx.closePath();
-            ctx.fill();
-          }
-        }
-
-      }
-    }
-  }
-}
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p=>{
-    p.move();
-    p.draw();
-  });
-
-  connect();
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize", ()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-</script>
+</div>
 
 <script>
+
 function addToDashboard(project, btn){
 
-  let projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
+  let projects =
+  JSON.parse(localStorage.getItem("elyra_projects")) || [];
 
   if(projects.some(p => p.id === project.id)){
+
     btn.innerText = "Added ✔";
     btn.disabled = true;
+
     return;
   }
 
   projects.push(project);
 
-  localStorage.setItem("elyra_projects", JSON.stringify(projects));
+  localStorage.setItem(
+  "elyra_projects",
+  JSON.stringify(projects)
+  );
 
   btn.innerText = "Added ✔";
   btn.disabled = true;
 }
+
 </script>
 
 </body>
