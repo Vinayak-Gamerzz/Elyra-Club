@@ -2,599 +2,628 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Appocalypse - Elyra</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* NAVBAR FONT */
-.nav-links a {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 500;
+/* ===== GLOBAL ===== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* BUTTON TEXT */
-.btn-primary,
-.btn-secondary {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-}
-
-/* NAV LINK UNDERLINE EFFECT */
-.nav-links a {
-  position: relative;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: #00ffc8;
-  transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 35px;
-  left: 0;
-  background: rgba(15,15,15,0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 8px 0;
-  display: none;
-  min-width: 180px;
-  border: 1px solid rgba(0,255,200,0.2);
-  box-shadow: 0 0 20px rgba(0,255,200,0.15);
-}
-
-/* SHOW DROPDOWN */
-.dropdown:hover .dropdown-menu {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropdown-menu li {
-  list-style: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-/* HOVER EFFECT INSIDE DROPDOWN */
-.dropdown-menu a:hover {
-  background: rgba(0,255,200,0.1);
-  color: #00ffc8;
-  transform: translateX(5px);
-}
-
-            /* NAVBAR */
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                padding: 18px 6%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: rgba(5,5,5,0.9);
-                background-filter: blur(10px);
-                border-bottom: 1px solid rgba(0,255,200,0.2);
-                z-index: 1000;
-            }
-
-            .logo {
-                font-size: 22px;
-                font-weight: 700;
-                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-decoration: none;
-            }
-
-            .nav-links {
-                list-style: none;
-                display: flex;
-                gap: 20px;
-            }
-
-            .nav-links a {
-                color: #ccc;
-                text-decoration: none;
-                font-size: 14px;
-                transition: 0.3s;
-            }
-
-            .nav-links a:hover {
-                color: #00ffc8;
-            }
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
+body{
+  font-family:'Inter',sans-serif;
+  color:#E5E7EB;
+  overflow-x:hidden;
+  padding-top:110px;
 
   background:
-    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.8), transparent),
-    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.9), transparent),
-    rgba(0,0,0,0.6);
+    radial-gradient(circle at top left, rgba(139,92,246,0.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(103,232,249,0.18), transparent 30%),
+    linear-gradient(135deg,#0B1020,#111827,#0F172A);
 
-  z-index: -1;
+  background-attachment:fixed;
+
+  position:relative;
 }
 
-@keyframes move1 {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(200px,150px); }
+/* ===== BACKGROUND ===== */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  pointer-events:none;
+
+  z-index:-10;
 }
 
-@keyframes move2 {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(-150px,-200px); }
+body::after{
+  content:"";
+  position:fixed;
+
+  top:-150px;
+  right:-150px;
+
+  width:500px;
+  height:500px;
+
+  background:radial-gradient(circle,
+  rgba(168,85,247,0.18),
+  transparent 70%);
+
+  filter:blur(90px);
+
+  z-index:-10;
 }
 
+/* ===== NAVBAR ===== */
 
-@keyframes particlesMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(-300px,-300px); }
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:22px 6%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(10,15,30,0.78);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  z-index:99999;
 }
 
-/* HERO */
-.hero {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.back-btn {
-  color: #00ffc8;
-}
-
-.hero h1 {
-  font-size: 52px;
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.logo{
+.logo-wrap{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  text-decoration:none;
 }
 
 .logo-img{
-  width:32px;
+  width:34px;
 }
 
 .logo-text{
-  font-size:20px;
-  font-weight:600;
-  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  font-size:24px;
+  font-family:'Orbitron';
+  font-weight:700;
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
   -webkit-background-clip:text;
   color:transparent;
 }
 
-.hero p {
-  color: #aaa;
-  font-size: 16px;
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  list-style:none;
 }
 
-/* DESCRIPTION */
-.desc {
-  max-width: 950px;
-  margin: 30px auto;
-  margin-bottom: 100px;
-  background: #111 solid;
-  padding: 25px;
-  border-radius: 12px;
-  color: #bbb;
-  text-align: center;
-  line-height: 1.6;
-  border: 1px solid #222;
-}
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 28px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 40px;
-  text-align: center;
+.nav-links a{
+  text-decoration:none;
+  color:#CBD5E1;
+
+  font-size:15px;
+  font-weight:500;
+
+  transition:0.3s;
+
+  position:relative;
 }
 
-/* GRID */
-.grid {
-  margin-top: 20px;
-  gap: 25px;
+.nav-links a::after{
+  content:"";
+  position:absolute;
+
+  left:0;
+  bottom:-5px;
+
+  width:0%;
+  height:2px;
+
+  background:#67E8F9;
+
+  transition:0.3s;
 }
 
-.card {
-  text-align: center;
-  padding: 25px;
-  font-size: 28px;
-background: #111 !important;
-  border: 1px solid #222;
+.nav-links a:hover::after{
+  width:100%;
 }
 
-.card h3 {
-  margin-top: 15px;   /* logo → heading gap */
-  margin-bottom: 10px;
+.nav-links a:hover{
+  color:#67E8F9;
 }
 
-.card p {
-  margin-top: 10px;    /* heading → desc gap */
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+  position:relative;
 }
 
-/* CARD TEXT */
-.card p {
-  margin-top: 10px;
-  color: #aaa;
-  font-size: 14px;
-  line-height: 1.4;
+.dropdown-menu{
+  position:absolute;
+  top:40px;
+  left:0;
+
+  background:rgba(15,20,35,0.92);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:16px;
+
+  display:none;
+
+  padding:10px;
+
+  min-width:210px;
+
+  backdrop-filter:blur(16px);
+
+  z-index:99999;
 }
 
-.floating-logo {
-  position: fixed;
-  top: 100px;
-  right: 30px;
-  width: 120px;
-  opacity: 1;
-  animation: float 3s ease-in-out infinite;
+.dropdown-menu li{
+  list-style:none;
 }
 
-/* FLOAT ANIMATION */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
+.dropdown-menu a{
+  display:block;
+
+  padding:12px 14px;
+
+  color:#CBD5E1;
+
+  border-radius:10px;
+
+  transition:0.3s;
 }
 
-body {
-  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000000);
-  background-image: 
-    radial-gradient(circle at 80% 20%, rgba(138,43,226,0.15), transparent),
-    radial-gradient(circle at 20% 80%, rgba(0,255,200,0.1), transparent);
+.dropdown-menu a:hover{
+  color:#67E8F9;
+
+  background:
+  rgba(103,232,249,0.08);
+
+  transform:translateX(4px);
 }
 
-.card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 25px rgba(138,43,226,0.3);
+.dropdown:hover .dropdown-menu{
+  display:block;
 }
 
-/* LOCK BAR */
-.lock-bar {
-  margin-top: 50px;
-  padding: 15px;
-  border-radius: 30px;
-  text-align: center;
-  background: rgba(255,0,0,0.1);
-  border: 1px solid rgba(255,0,0,0.4);
-  color: #ff4d4d;
-  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+/* ===== BACK BTN ===== */
+
+.back-btn{
+  position:fixed;
+
+  top:120px;
+  left:30px;
+
+  padding:12px 24px;
+
+  border:none;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,0.06);
+
+  backdrop-filter:blur(12px);
+
+  color:#67E8F9;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  z-index:9999;
 }
 
+.back-btn:hover{
+  transform:translateY(-3px);
 
-.main-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  background:rgba(103,232,249,0.1);
 }
 
-.notice-item {
-  background: rgba(138,43,226,0.08);  /* 🔥 purple tint */
-  border: 1px solid rgba(138,43,226,0.2);
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 20px;
+/* ===== FLOATING LOGO ===== */
+
+.floating-logo{
+  position:fixed;
+
+  right:30px;
+  top:120px;
+
+  width:110px;
+
+  opacity:0.85;
+
+  animation:float 4s ease-in-out infinite;
+
+  z-index:9999;
 }
 
-.project-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;   /* 🔥 proper spacing */
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+  100%{transform:translateY(0);}
 }
 
+/* ===== HERO ===== */
 
-/* 🔥 PROGRESS BAR */
-.progress {
-  height: 6px;
-  background: #222;
-  border-radius: 10px;
+.hero{
+  text-align:center;
+  padding:20px;
+  position:relative;
+  z-index:10;
 }
 
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border-radius: 10px;
+.hero h1{
+  font-size:70px;
+
+  font-family:'Orbitron';
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+
+  margin-bottom:16px;
 }
 
-.project-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
+.hero p{
+  color:#CBD5E1;
+  font-size:18px;
+  max-width:850px;
+  margin:auto;
+  line-height:1.8;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  transition: 0.3s;
+/* ===== DESCRIPTION ===== */
+
+.desc{
+  width:88%;
+  margin:40px auto;
+
+  background:rgba(255,255,255,0.05);
+
+  backdrop-filter:blur(14px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:28px;
+
+  padding:40px;
+
+  line-height:2;
+
+  color:#CBD5E1;
+
+  position:relative;
+  z-index:10;
 }
 
-/* 🔥 LIVE BADGE */
+/* ===== TITLES ===== */
+
+.section-title{
+  text-align:center;
+
+  margin:60px 0 35px;
+
+  font-size:34px;
+
+  font-family:'Orbitron';
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+
+  position:relative;
+  z-index:10;
+}
+
+/* ===== GRID ===== */
+
+.grid{
+  width:88%;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+  gap:28px;
+
+  position:relative;
+  z-index:10;
+}
+
+/* ===== CARDS ===== */
+
+.card{
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:28px;
+
+  padding:35px;
+
+  text-align:center;
+
+  transition:0.35s ease;
+}
+
+.card:hover{
+  transform:
+  translateY(-8px)
+  rotate(-1deg);
+
+  border-color:
+  rgba(103,232,249,0.25);
+
+  box-shadow:
+  0 0 35px rgba(103,232,249,0.12);
+}
+
+.card h3{
+  margin:18px 0 14px;
+
+  font-size:26px;
+
+  font-family:'Orbitron';
+}
+
+.card p{
+  color:#CBD5E1;
+  line-height:1.8;
+}
+
+/* ===== MAIN CARD ===== */
+
+.main-card{
+  width:88%;
+  margin:50px auto;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:28px;
+
+  padding:35px;
+
+  position:relative;
+  z-index:10;
+}
+
+.main-card h2{
+  margin-bottom:25px;
+
+  font-size:30px;
+
+  font-family:'Orbitron';
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ===== NOTICE ===== */
+
+.notice-item{
+  background:rgba(255,255,255,0.04);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:20px;
+
+  padding:24px;
+
+  margin-top:20px;
+}
+
+/* ===== PROJECTS ===== */
+
+.project-card{
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:24px;
+
+  padding:24px;
+
+  position:relative;
+
+  transition:0.3s;
+}
+
+.project-card:hover{
+  transform:translateY(-8px);
+
+  box-shadow:
+  0 0 30px rgba(103,232,249,0.12);
+}
+
+.project-card h3{
+  margin-bottom:14px;
+
+  font-size:24px;
+
+  font-family:'Orbitron';
+}
+
+.project-card p{
+  margin-bottom:10px;
+
+  color:#CBD5E1;
+  line-height:1.7;
+}
+
 .badge{
   position:absolute;
-  top:12px;
-  right:12px;
-  background:#63e08a;
-  color:#000;
-  font-size:10px;   /* pehle bada tha */
-  padding:4px 8px;  /* small */
+
+  top:16px;
+  right:16px;
+
+  padding:6px 12px;
+
   border-radius:999px;
-  font-weight:600;
-  width: 30px;
-  height: 30px;
+
+  background:#67E8F9;
+
+  color:#000;
+
+  font-size:12px;
+
+  font-weight:700;
 }
 
-.badge-card {
-  box-shadow: 0 0 20px rgba(0,255,150,0.3);
+/* ===== PROGRESS ===== */
+
+.progress{
+  width:100%;
+  height:8px;
+
+  background:rgba(255,255,255,0.08);
+
+  border-radius:999px;
+
+  margin:18px 0;
 }
 
-/* 🔥 PROGRESS BAR */
-.progress {
-  height: 6px;
-  background: #222;
-  border-radius: 10px;
-  margin: 10px 0;
+.progress-bar{
+  height:100%;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
 }
 
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border-radius: 10px;
+/* ===== BUTTONS ===== */
+
+.view-btn,
+.project-card button{
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:18px;
+
+  margin-top:10px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  transition:0.3s;
 }
 
-.view-btn {
-  width: 100%;
-  padding: 10px;
-  border-radius: 25px;
+.view-btn{
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
 
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border: none;
-
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
+  color:#000;
 }
 
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #081420, #03060d);
-  z-index: -1;
-  filter: blur(0.5px);
+.project-card button{
+  background:rgba(255,255,255,0.06);
+
+  color:#E5E7EB;
+
+  border:1px solid rgba(255,255,255,0.08);
 }
 
-.hud-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-
-  /* 🔥 EXTRA DARK */
-  background: radial-gradient(circle at center, #01040a, #000);
+.project-card button:hover{
+  background:rgba(103,232,249,0.12);
 }
 
-/* SVG CENTER */
-.hud-svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 420px;
-  transform: translate(-50%, -50%);
-}
+/* ===== MOBILE ===== */
 
-/* RINGS */
-.ring {
-  stroke: #00ffff;          /* brighter cyan */
-  stroke-width: 2.5;
-  opacity: 1;               /* 🔥 full visible */
-}
+@media(max-width:768px){
 
-.outer {
-  stroke-opacity: 0.5;
-}
+  .hero h1{
+    font-size:48px;
+  }
 
-.inner {
-  stroke-opacity: 1;
-  stroke-width: 3;
-}
+  .nav-links{
+    gap:14px;
+  }
 
-.dashed {
-  stroke-opacity: 1;
-  stroke-width: 2.5;
-}
+  .nav-links a{
+    font-size:13px;
+  }
 
-/* RADAR BEAM */
-.beam {
-  stroke: #00ffff;
-  stroke-width: 4;  /* 🔥 thicker */
-  filter: drop-shadow(0 0 8px cyan);
-}
+  .floating-logo{
+    display:none;
+  }
 
-/* CENTER GLOW */
-.hud-svg::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 90px;
-  height: 90px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,255,255,0.9), transparent);
-  animation: pulse 2s infinite ease-in-out;
-}
-
-/* SIDE PANELS */
-.hud-left, .hud-right {
-  position: absolute;
-  width: 180px;
-  height: 220px;
-  border: 1px solid rgba(0,255,255,0.4);
-  border-radius: 10px;
-  background: rgba(0,255,255,0.03);
-  box-shadow: 0 0 30px rgba(0,255,255,0.25);
-  padding: 15px;
-  color: #00eaff;
-  font-size: 12px;
-  font-family: monospace;
-}
-
-/* LEFT PANEL (bars) */
-.hud-left {
-  left: 5%;
-  top: 30%;
-}
-
-.bar {
-  height: 6px;
-  margin-bottom: 12px;
-  background: linear-gradient(90deg, #00eaff, transparent);
-  animation: load 2s infinite;
-}
-
-.bar.small {
-  width: 60%;
-}
-
-/* RIGHT PANEL */
-.hud-right {
-  right: 5%;
-  top: 25%;
-}
-
-.hud-right p {
-  margin: 10px 0;
-  opacity: 0.8;
-}
-
-/* GRID */
-.hud-bg::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-
-  background-image:
-    linear-gradient(rgba(0,255,255,0.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,255,0.3) 1px, transparent 1px);
-
-  background-size: 30px 30px;
-  transform: perspective(600px) rotateX(65deg);
-  opacity: 0.9;
-}
-
-/* ANIMATIONS */
-@keyframes spin {
-  from { transform: rotate(0deg); transform-origin: 50% 50%; }
-  to { transform: rotate(360deg); transform-origin: 50% 50%; }
-}
-
-@keyframes sweep {
-  from { transform: rotate(0deg); transform-origin: 50% 50%; }
-  to { transform: rotate(360deg); transform-origin: 50% 50%; }
-}
-
-@keyframes pulse {
-  0% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.4); }
-  100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes load {
-  0% { width: 20%; }
-  50% { width: 100%; }
-  100% { width: 20%; }
 }
 
 </style>
 </head>
 
 <body>
-<div class="hud-bg">
-
-  <svg class="hud-svg" viewBox="0 0 500 500">
-
-    <circle cx="250" cy="250" r="200" class="ring outer"/>
-    <circle cx="250" cy="250" r="150" class="ring dashed"/>
-    <circle cx="250" cy="250" r="90" class="ring inner"/>
-
-    <!-- radar beam -->
-    <line x1="250" y1="250" x2="250" y2="70" class="beam"/>
-
-  </svg>
-
-  <!-- LEFT PANEL -->
-  <div class="hud-left">
-    <div class="bar"></div>
-    <div class="bar small"></div>
-    <div class="bar"></div>
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="hud-right">
-    <p>SYS ACTIVE</p>
-    <p>APP MODE</p>
-    <p>STATUS: ONLINE</p>
-  </div>
-
-</div>
-
-<canvas id="bg"></canvas>
 
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
   <a href="index.html" class="logo-wrap">
@@ -603,234 +632,292 @@ body {
   </a>
 
   <ul class="nav-links">
+
     <li><a href="about.html">About</a></li>
+
     <li><a href="events.html">Events</a></li>
+
     <li><a href="team.html">Team</a></li>
+
     <li><a href="founders.html">Founders</a></li>
+
     <li><a href="gallery.html">Gallery</a></li>
 
     <li class="dropdown">
+
       <a href="#">Skill Arenas ▾</a>
+
       <ul class="dropdown-menu">
+
         <li><a href="helix-lab.html">Helix Lab</a></li>
+
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
+
         <li><a href="appocalypse.html">Appocalypse</a></li>
+
         <li><a href="aether-arena.html">Aether Arena</a></li>
+
       </ul>
+
     </li>
 
-    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
 
-    <!-- BEFORE LOGIN -->
-    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
-    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+    <li id="joinBtn">
+      <a href="join.html">Join</a>
+    </li>
 
-    <!-- LOGOUT -->
+    <li id="loginBtn">
+      <a href="login.html">Login</a>
+    </li>
+
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
+
 </nav>
+
 <img src="assets/images/appocalypse.png" class="floating-logo">
 
-<!-- BACK -->
-<button class="back-btn" onclick="location.href='index.html'">← Back</button>
-
-<div class="container">
+<button class="back-btn" onclick="location.href='index.html'">
+← Back
+</button>
 
 <!-- HERO -->
+
 <div class="hero">
   <h1>Appocalypse</h1>
-  <p>Build Powerful apps, design seamless experiences, and turn your ideas into real digital products.</p>
+
+  <p>
+    Build powerful apps, design seamless experiences
+    and turn ideas into real digital products.
+  </p>
 </div>
 
 <!-- DESCRIPTION -->
+
 <div class="desc">
-  Appocalypse is dedicated to modern app development,focusing on building scalable, user friendly, and impactful applications.
-  Members learn how to design, develop, and deploy apps that solve real problems.
 
-  This is where members step beyond using apps and start building actual working applications.
+  Appocalypse focuses on modern app development,
+  helping members build scalable, creative and
+  real-world digital products.
 
-  From frontend UI design to backend systems, API integration, and performance optimization, this wing covers everything required to create complete digital products.
-  Whether you're building your first app or scaling advanced projects, Appocalypse gives you the tools, guidance, and real-world experience to grow as a developer.!
+  From frontend interfaces to backend systems,
+  API integrations and deployment,
+  this wing teaches everything needed to create
+  complete applications.
+
 </div>
 
 <!-- SECTION -->
-<h2 class="section-title">🚀 What You'll Work On</h2>
 
-<div class="container">
-  <div class="grid">
+<h2 class="section-title">
+🚀 What You'll Work On
+</h2>
 
-    <div class="card">
-      💻
-      <h3>Frontend Development</h3>
-      <p>
-        Design responsive interfaces and modern layouts.
-        Create clean, user-friendly UI experiences.</p>
-    </div>
+<div class="grid">
 
-    <div class="card">
-      ⚙️
-      <h3>Backend Development</h3>
-      <p>
-        Build API's and manage databse efficiently.
-        Power applications with strong server logic.
-      </p>
-    </div>
-
-    <div class="card">
-      📱
-      <h3>App Development</h3>
-      <p>
-        Code applications using modern frameworks and tools.
-        Turn ideas into real-world digital products.
-      </p>
-    </div>
-
-    <div class="card">
-      🔗
-      <h3>API Integration</h3>
-      <p>
-        Connect apps with external services and data.
-        Enable real-time features and automation.
-      </p>
-    </div>
-
-    <div class="card">
-      🎨
-      <h3>UI/UX Design</h3>
-      <p>
-        Design intuitive visually appealing interfaces.
-        Improve user experience and interaction flow.
-      </p>
-    </div>
-
-    <div class="card">
-      🚀
-      <h3>Deployment</h3>
-      <p>
-        Launch apps live on real platforms.
-        Learn hosting, scaling, and optimization.
-      </p>
-    </div>
-
+  <div class="card">
+    💻
+    <h3>Frontend Development</h3>
+    <p>Create responsive interfaces and modern layouts.</p>
   </div>
 
-  <div class="main-card">
+  <div class="card">
+    ⚙️
+    <h3>Backend Development</h3>
+    <p>Build APIs and manage powerful systems.</p>
+  </div>
+
+  <div class="card">
+    📱
+    <h3>App Development</h3>
+    <p>Turn ideas into complete applications.</p>
+  </div>
+
+  <div class="card">
+    🔗
+    <h3>API Integration</h3>
+    <p>Connect apps with external services and automation.</p>
+  </div>
+
+  <div class="card">
+    🎨
+    <h3>UI/UX Design</h3>
+    <p>Create beautiful and intuitive experiences.</p>
+  </div>
+
+  <div class="card">
+    🚀
+    <h3>Deployment</h3>
+    <p>Launch and scale apps on real platforms.</p>
+  </div>
+
+</div>
+
+<!-- ===== NOTICE BOARD ===== -->
+
+<div class="main-card">
+
   <h2>📢 Notice Board</h2>
 
   <div class="notice-item">
-    <h3>Workshop: Arduino Robotics Fundamentals</h3>
-    <p>Learn the basics of building autonomous robots. This Saturday at 3 PM.</p>
+    <h3>App UI Workshop</h3>
+    <p>Sunday • 5 PM • Learn modern mobile UI/UX design systems.</p>
   </div>
 
   <div class="notice-item">
-    <h3>Project Showcase Next Month</h3>
-    <p>Register before end of this week.</p>
-  </div>
-</div>
-
-  <div class="main-card">
-  <h2>🔥 Projects</h2>
-
-  <div class="grid"> </div>
-
-    <div class="project-card">
-  <span class="badge">LIVE</span>
-
-  <h3>Hack Club: The Game</h3>
-  <p>Contribute to or build interactive experiences around Hack Club through app development.</p>
-  <p>Difficulty: Intermediate</p>
-  <p>Time: 3-10 Days</p>
-  <p>Rewards: Swag, recognition</p>
-  <p> </p>
-      <p></p>
-      <p></p>
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
+    <h3>API Integration Session</h3>
+    <p>Build apps using real APIs and automation workflows.</p>
   </div>
 
-  <a href="https://game.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
-
-  <button onclick="addToDashboard({
-  id: 'app-hack-club-the-game',
-  name: 'Hack Club: The Game',
-  desc: 'Contribute to or build interactive experiences around Hack Club through app development.',
-  difficulty: 'Intermediate',
-  time: '3-10 Days',
-  reward: 'Swag, recognition',
-  link: 'https://game.hackclub.com'
-}, this)">
-Add to Dashboard
-</button>
+  <div class="notice-item">
+    <h3>App Showcase Event</h3>
+    <p>Present your apps and compete with other builders.</p>
+  </div>
 
 </div>
+
+<!-- ===== PROJECTS ===== -->
+
+<div class="main-card">
+
+<h2>🔥 Projects</h2>
+
+<div class="grid">
+
+<!-- HACK CLUB THE GAME -->
 
 <div class="project-card">
-  <span class="badge">LIVE</span>
 
-  <h3>Macondo</h3>
-  <p>Create creative coding projects, including story-driven or experimental apps.</p>
-  <p>Difficulty: Intermediate</p>
-  <p>Time: 1-3 Weeks</p>
-  <p>Rewards: Get Anything you want from hours of your work (eg- Macbook Neo/Air)</p>
+<span class="badge">LIVE</span>
 
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
-  </div>
+<h3>Hack Club The Game</h3>
 
-  <a href="https://macondo.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
+<p>Create interactive app-based experiences and game systems.</p>
 
-  <button onclick="addToDashboard({ 
-  id: 'app-macondo',
-  name: 'Macondo',
-  desc: 'Create creative coding projects, including story-driven or experimental apps.',
-  difficulty: 'Intermediate',
-  time: '1-3 Weeks',
-  reward: 'Get Anything you want from hours of your work (eg- Macbook Neo/Air)',
-  link: 'https://macondo.hackclub.com',
+<p>Difficulty: Intermediate</p>
+
+<p>Time: 3–10 Days</p>
+
+<p>Reward: Swag & Recognition</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:65%"></div>
+</div>
+
+<a href="https://game.hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button
+id="hackclub-game-app-btn"
+
+onclick="addToDashboard({
+id:'hackclub-game-app',
+name:'Hack Club The Game',
+desc:'Interactive app experiences.',
+difficulty:'Intermediate',
+time:'3–10 Days',
+reward:'Swag & Recognition',
+link:'https://game.hackclub.com'
 }, this)">
 Add to Dashboard
 </button>
 
 </div>
 
+<!-- MACONDO -->
+
 <div class="project-card">
-  <span class="badge">LIVE</span>
 
-  <h3>Horizons</h3>
-  <p>Develop a large-scale, long-term project such as a full app with mentorship and support.</p>
-  <p>Difficulty: Advanced</p>
-  <p>Time: 1–3 Months</p>
-  <p>Rewards: Get Anything you want from hours of your work - Grants, Products, Recognization</p>
+<span class="badge">HOT</span>
 
-  <div class="progress">
-    <div class="progress-bar" style="width:65%"></div>
-  </div>
+<h3>Macondo</h3>
 
-  <a href="https://horizons.hackclub.com" target="_blank">
-    <button class="view-btn">View Program</button>
-  </a>
+<p>Build immersive storytelling experiences and creative apps.</p>
 
-  <button onclick="addToDashboard({ 
-  id: 'app-horizons',
-  name: 'Horizons',                
-  desc: 'Develop a large-scale, long-term project such as a full app with mentorship and support.',
-  difficulty: 'Advanced',
-  time: '1–3 Months',
-  reward: 'Get Anything you want from hours of your work - Grants, Products, Recognization',
-  link: 'https://horizons.hackclub.com',
+<p>Difficulty: Intermediate</p>
+
+<p>Time: 4–12 Days</p>
+
+<p>Reward: Community Recognition</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:72%"></div>
+</div>
+
+<a href="https://macondo.hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button
+id="macondo-app-btn"
+
+onclick="addToDashboard({
+id:'macondo-app',
+name:'Macondo',
+desc:'Creative storytelling applications.',
+difficulty:'Intermediate',
+time:'4–12 Days',
+reward:'Recognition',
+link:'https://macondo.hackclub.com'
 }, this)">
 Add to Dashboard
 </button>
+
+</div>
+
+<!-- HORIZONS -->
+
+<div class="project-card">
+
+<span class="badge">NEW</span>
+
+<h3>Horizons</h3>
+
+<p>Ship experimental apps and creative internet experiences.</p>
+
+<p>Difficulty: Beginner–Intermediate</p>
+
+<p>Time: 3–8 Days</p>
+
+<p>Reward: Swag + Features</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:58%"></div>
+</div>
+
+<a href="https://horizons.hackclub.com" target="_blank">
+<button class="view-btn">
+View Program
+</button>
+</a>
+
+<button
+id="horizons-app-btn"
+
+onclick="addToDashboard({
+id:'horizons-app',
+name:'Horizons',
+desc:'Creative internet applications.',
+difficulty:'Beginner–Intermediate',
+time:'3–8 Days',
+reward:'Swag + Features',
+link:'https://horizons.hackclub.com'
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
 
 </div>
 
@@ -838,168 +925,190 @@ Add to Dashboard
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import {
 
-const app = initializeApp({
-  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
-  authDomain:"nova-club-vinayak.firebaseapp.com",
-  projectId:"nova-club-vinayak"
-});
+auth,
+logout,
 
-const auth = getAuth(app);
+authState,
 
-// 🔥 NAVBAR CONTROL
-onAuthStateChanged(auth, (user) => {
+addProject,
+loadProjects
 
-  const loginBtn = document.getElementById("loginBtn");
-  const joinBtn = document.getElementById("joinBtn");
-  const dashboardLink = document.getElementById("dashboardLink");
-  const logoutBtn = document.getElementById("logoutBtn");
+} from "./js/firebase.js";
+
+/* NAVBAR */
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const joinBtn =
+document.getElementById("joinBtn");
+
+const dashboardLink =
+document.getElementById("dashboardLink");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+/* AUTH */
+
+authState(async(user)=>{
 
   if(user){
-    if(loginBtn) loginBtn.style.display="none";
-    if(joinBtn) joinBtn.style.display="none";
-    if(dashboardLink) dashboardLink.style.display="block";
-    if(logoutBtn) logoutBtn.style.display="block";
-  } else {
-    if(loginBtn) loginBtn.style.display="block";
-    if(joinBtn) joinBtn.style.display="block";
-    if(dashboardLink) dashboardLink.style.display="none";
-    if(logoutBtn) logoutBtn.style.display="none";
+
+    loginBtn.style.display =
+    "none";
+
+    joinBtn.style.display =
+    "none";
+
+    dashboardLink.style.display =
+    "block";
+
+    logoutBtn.style.display =
+    "block";
+
+    await checkProjects();
+
+  }else{
+
+    loginBtn.style.display =
+    "block";
+
+    joinBtn.style.display =
+    "block";
+
+    dashboardLink.style.display =
+    "none";
+
+    logoutBtn.style.display =
+    "none";
   }
+
 });
 
-// 🔥 LOGOUT
-const logoutBtn = document.getElementById("logoutBtn");
-if(logoutBtn){
-  logoutBtn.onclick = async ()=>{
-    await signOut(auth);
-    location.reload();
-  };
-}
+/* LOGOUT */
 
-// ==========================
-// 🔥 HIGH DENSITY BACKGROUND
-// ==========================
+logoutBtn.onclick =
+async ()=>{
 
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
+  await logout();
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+  location.href =
+  "index.html";
+};
 
-let particles = [];
-const COUNT = 110; // 🔥 increased particles
+/* ADD TO DASHBOARD */
 
-class Particle {
-  constructor(){
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
-  }
+window.addToDashboard =
+async function(project,btn){
 
-  move(){
-    this.x += this.vx;
-    this.y += this.vy;
+  const projects =
+  await loadProjects();
 
-    if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-  }
+  const exists =
+  projects.find(
+    p => p.id === project.id
+  );
 
-  draw(){
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, 0.8, 0, Math.PI*2);
-    ctx.fillStyle = "rgba(0,255,255,0.6)";
-    ctx.fill();
-  }
-}
+  /* COMPLETED */
 
-for(let i=0;i<COUNT;i++){
-  particles.push(new Particle());
-}
+  if(
+    exists &&
+    exists.status === "completed"
+  ){
 
-function connect(){
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
+    btn.innerText =
+    "Completed ✅";
 
-      let dx = particles[i].x - particles[j].x;
-      let dy = particles[i].y - particles[j].y;
-      let dist = Math.sqrt(dx*dx + dy*dy);
-
-      if(dist < 120){ // 🔥 increased connection range
-
-        // bright lines
-        ctx.beginPath();
-        ctx.strokeStyle = "rgba(0,255,255,0.7)";
-        ctx.lineWidth = 1.5;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-
-        // mesh triangles
-        for(let k=j+1;k<particles.length;k++){
-          let dx2 = particles[j].x - particles[k].x;
-          let dy2 = particles[j].y - particles[k].y;
-          let d2 = Math.sqrt(dx2*dx2 + dy2*dy2);
-
-          if(d2 < 180){
-            ctx.beginPath();
-            ctx.fillStyle = "rgba(0,255,255,0.1)";
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.lineTo(particles[k].x, particles[k].y);
-            ctx.closePath();
-            ctx.fill();
-          }
-        }
-
-      }
-    }
-  }
-}
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p=>{
-    p.move();
-    p.draw();
-  });
-
-  connect();
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize", ()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-</script>
-
-<script>
-function addToDashboard(project, btn){
-
-  let projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
-
-  if(projects.some(p => p.id === project.id)){
-    btn.innerText = "Added ✔";
     btn.disabled = true;
+
     return;
   }
 
-  projects.push(project);
+  /* PENDING */
 
-  localStorage.setItem("elyra_projects", JSON.stringify(projects));
+  if(
+    exists &&
+    exists.status === "pending"
+  ){
 
-  btn.innerText = "Added ✔";
+    btn.innerText =
+    "Pending ⏳";
+
+    btn.disabled = true;
+
+    return;
+  }
+
+  /* CURRENT */
+
+  if(exists){
+
+    btn.innerText =
+    "Added ✔";
+
+    btn.disabled = true;
+
+    return;
+  }
+
+  /* ADD */
+
+  await addProject(project);
+
+  btn.innerText =
+  "Added ✔";
+
   btn.disabled = true;
+};
+
+/* CHECK PROJECTS */
+
+async function checkProjects(){
+
+  const projects =
+  await loadProjects();
+
+  projects.forEach(p=>{
+
+    const btn =
+    document.getElementById(
+      p.id + "-btn"
+    );
+
+    if(btn){
+
+      if(
+        p.status === "completed"
+      ){
+
+        btn.innerText =
+        "Completed ✅";
+      }
+
+      else if(
+        p.status === "pending"
+      ){
+
+        btn.innerText =
+        "Pending ⏳";
+      }
+
+      else{
+
+        btn.innerText =
+        "Added ✔";
+      }
+
+      btn.disabled = true;
+    }
+
+  });
+
 }
-</script>
+
 </script>
 
 </body>

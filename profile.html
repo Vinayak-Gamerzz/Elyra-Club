@@ -1,510 +1,402 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Profile - Elyra Club</title>
 
-<link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Profile - Elyra</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* NAVBAR FONT */
-.nav-links a {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 500;
-}
-
-/* BUTTON TEXT */
-.btn-primary,
-.btn-secondary {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-}
-
-/* NAV LINK UNDERLINE EFFECT */
-.nav-links a {
-  position: relative;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: #00ffc8;
-  transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 35px;
-  left: 0;
-  background: rgba(15,15,15,0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 8px 0;
-  display: none;
-  min-width: 180px;
-  border: 1px solid rgba(0,255,200,0.2);
-  box-shadow: 0 0 20px rgba(0,255,200,0.15);
-}
-
-/* SHOW DROPDOWN */
-.dropdown:hover .dropdown-menu {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropdown-menu li {
-  list-style: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-/* HOVER EFFECT INSIDE DROPDOWN */
-.dropdown-menu a:hover {
-  background: rgba(0,255,200,0.1);
-  color: #00ffc8;
-  transform: translateX(5px);
-}
-
-            /* NAVBAR */
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                padding: 18px 6%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: rgba(5,5,5,0.9);
-                background-filter: blur(10px);
-                border-bottom: 1px solid rgba(0,255,200,0.2);
-                z-index: 1000;
-            }
-
-            .logo {
-                font-size: 22px;
-                font-weight: 700;
-                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-decoration: none;
-            }
-
-            .nav-links {
-                list-style: none;
-                display: flex;
-                gap: 20px;
-            }
-
-            .nav-links a {
-                color: #ccc;
-                text-decoration: none;
-                font-size: 14px;
-                transition: 0.3s;
-            }
-
-            .nav-links a:hover {
-                color: #00ffc8;
-            }
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.8), transparent),
-    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.9), transparent),
-    rgba(0,0,0,0.6);
-
-  z-index: -1;
-}
-
-@keyframes move1 {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(200px,150px); }
-}
-
-@keyframes move2 {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(-150px,-200px); }
-}
-
-
-@keyframes particlesMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(-300px,-300px); }
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  margin-top: 0px;
-}
-
-.back-btn {
-  color: #00ffc8;
-}
-
-.hero h1 {
-  font-size: 52px;
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.logo-img{
-  width:32px;
-}
-
-.logo-text{
-  font-size:20px;
-  font-weight:600;
-  background: linear-gradient(90deg,#00f5d4,#9b5cff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.hero p {
-  color: #aaa;
-  font-size: 16px;
-}
-
-/* DESCRIPTION */
-.desc {
-  max-width: 950px;
-  margin: 30px auto;
-  margin-bottom: 100px;
-  background: #111 solid;
-  padding: 25px;
-  border-radius: 12px;
-  color: #bbb;
-  text-align: center;
-  line-height: 1.6;
-  border: 1px solid #222;
-}
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 28px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 40px;
-  text-align: center;
-}
-
-/* GRID */
-.grid {
-  margin-top: 20px;
-  gap: 25px;
-}
-
-.card {
-  text-align: center;
-  padding: 25px;
-  font-size: 28px;
-background: #111 !important;
-  border: 1px solid #222;
-}
-
-.card h3 {
-  margin-top: 15px;   /* logo → heading gap */
-  margin-bottom: 10px;
-}
-
-.card p {
-  margin-top: 10px;    /* heading → desc gap */
-}
-
-/* CARD TEXT */
-.card p {
-  margin-top: 10px;
-  color: #aaa;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.floating-logo {
-  position: fixed;
-  top: 100px;
-  right: 30px;
-  width: 120px;
-  opacity: 1;
-  animation: float 3s ease-in-out infinite;
-}
-
-/* FLOAT ANIMATION */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
-body {
-  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000000);
-  background-image: 
-    radial-gradient(circle at 80% 20%, rgba(138,43,226,0.15), transparent),
-    radial-gradient(circle at 20% 80%, rgba(0,255,200,0.1), transparent);
-}
-
-.card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 25px rgba(138,43,226,0.3);
-}
-
-/* LOCK BAR */
-.lock-bar {
-  margin-top: 50px;
-  padding: 15px;
-  border-radius: 30px;
-  text-align: center;
-  background: rgba(255,0,0,0.1);
-  border: 1px solid rgba(255,0,0,0.4);
-  color: #ff4d4d;
-  box-shadow: 0 0 20px rgba(255,0,0,0.2);
-}
-
-
-.main-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-.notice-item {
-  background: rgba(138,43,226,0.08);  /* 🔥 purple tint */
-  border: 1px solid rgba(138,43,226,0.2);
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 20px;
-}
-
-.project-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;   /* 🔥 proper spacing */
-}
-
-
-/* 🔥 PROGRESS BAR */
-.progress {
-  height: 6px;
-  background: #222;
-  border-radius: 10px;
-}
-
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border-radius: 10px;
-}
-
-.project-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  transition: 0.3s;
-}
-
-/* 🔥 LIVE BADGE */
-.badge{
-  position:absolute;
-  top:12px;
-  right:12px;
-  background:#63e08a;
-  color:#000;
-  font-size:10px;   /* pehle bada tha */
-  padding:4px 8px;  /* small */
-  border-radius:999px;
-  font-weight:600;
-  width: 30px;
-  height: 30px;
-}
-
-.badge-card {
-  box-shadow: 0 0 20px rgba(0,255,150,0.3);
-}
-
-/* 🔥 PROGRESS BAR */
-.progress {
-  height: 6px;
-  background: #222;
-  border-radius: 10px;
-  margin: 10px 0;
-}
-
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border-radius: 10px;
-}
-
-.view-btn {
-  width: 100%;
-  padding: 10px;
-  border-radius: 25px;
-
-  background: linear-gradient(90deg,#8a2be2,#00ffc8);
-  border: none;
-
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #081420, #03060d);
-  z-index: -1;
-  filter: blur(0.5px);
-}
-
-#matrix {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: #000000;
-}
-
-/* optional dark overlay for readability */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(190, 20, 20, 0.4);
-  z-index: -1;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-  background:#050505;
+
+  font-family:'Inter',sans-serif;
+
   color:white;
-  font-family:'Nunito',sans-serif;
-  padding-top:80px;
+
+  overflow-x:hidden;
+
+  background:
+
+  radial-gradient(circle at top left,
+  rgba(168,85,247,0.18),
+  transparent 30%),
+
+  radial-gradient(circle at bottom right,
+  rgba(103,232,249,0.18),
+  transparent 30%),
+
+  linear-gradient(
+  135deg,
+  #0B1020,
+  #111827,
+  #0F172A
+  );
+
+  min-height:100vh;
+
+  padding-top:110px;
+}
+
+/* GRID */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+
+  linear-gradient(
+  rgba(255,255,255,0.03) 1px,
+  transparent 1px
+  ),
+
+  linear-gradient(
+  90deg,
+  rgba(255,255,255,0.03) 1px,
+  transparent 1px
+  );
+
+  background-size:40px 40px;
+
+  z-index:-10;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+  position:fixed;
+
+  top:0;
+
+  width:100%;
+
+  padding:22px 6%;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  background:rgba(10,15,30,0.78);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:
+  1px solid rgba(255,255,255,0.08);
+
+  z-index:9999;
+}
+
+.logo-wrap{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  text-decoration:none;
+}
+
+.logo-img{
+  width:34px;
+}
+
+.logo-text{
+
+  font-size:24px;
+
+  font-family:'Orbitron';
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+
+  color:transparent;
+}
+
+.nav-links{
+
+  display:flex;
+
+  gap:24px;
+
+  align-items:center;
+
+  list-style:none;
+}
+
+.nav-links a{
+
+  color:#CBD5E1;
+
+  text-decoration:none;
+
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:#67E8F9;
 }
 
 /* MAIN */
+
 .container{
-  max-width:700px;
-  margin:100px auto;
+
+  width:92%;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+  1fr 2fr;
+
+  gap:30px;
 }
 
 /* CARD */
-.profile-card{
-  background:rgba(20,20,20,0.7);
-  backdrop-filter:blur(10px);
+
+.card{
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  border-radius:30px;
+
   padding:30px;
+
+  backdrop-filter:blur(16px);
+}
+
+/* LEFT */
+
+.avatar{
+
+  width:130px;
+
+  height:130px;
+
+  border-radius:50%;
+
+  margin:auto;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-size:42px;
+
+  font-weight:700;
+
+  background:
+
+  linear-gradient(
+  135deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  color:black;
+}
+
+.left h2{
+
+  text-align:center;
+
+  margin-top:20px;
+
+  font-family:'Orbitron';
+}
+
+.bio{
+
+  text-align:center;
+
+  margin-top:14px;
+
+  color:#CBD5E1;
+}
+
+/* STATS */
+
+.stats{
+
+  margin-top:30px;
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:15px;
+}
+
+.stat{
+
+  background:
+  rgba(255,255,255,0.05);
+
+  padding:18px;
+
   border-radius:20px;
+
   text-align:center;
 }
 
-/* AVATAR */
-.avatar{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-bottom:15px;
-  border:3px solid #00ffc8;
+.stat h3{
+  font-size:24px;
 }
 
-/* INFO */
-.info p{
-  margin:6px 0;
+.stat p{
+
+  margin-top:8px;
+
+  color:#CBD5E1;
+
+  font-size:14px;
 }
 
-/* BUTTON */
-.btn{
-  margin-top:10px;
-  padding:10px 20px;
-  border-radius:25px;
-  background:linear-gradient(90deg,#00ffc8,#00aaff);
-  color:black;
-  cursor:pointer;
+/* FORM */
+
+.form-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:20px;
 }
 
-/* MODAL */
-.modal{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  display:none;
-  align-items:center;
-  justify-content:center;
+.input-box{
+
+  display:flex;
+
+  flex-direction:column;
 }
 
-.modal-box{
-  background:#111;
-  padding:20px;
-  border-radius:12px;
-  width:300px;
-}
+.input-box label{
 
-.modal input{
-  width:100%;
   margin-bottom:10px;
+
+  color:#CBD5E1;
+}
+
+.input-box input,
+.input-box textarea{
+
+  padding:15px;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:16px;
+
+  background:#111827;
+
+  color:white;
+}
+
+textarea{
+  min-height:120px;
+  resize:none;
+}
+
+/* SAVE BTN */
+
+.save-btn{
+
+  margin-top:30px;
+
+  width:100%;
+
+  padding:18px;
+
+  border:none;
+
+  border-radius:999px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  font-size:16px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  color:black;
+
+  transition:0.3s;
+}
+
+.save-btn:hover{
+
+  transform:translateY(-4px);
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .container{
+
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+  }
+
+}
+
+.hackclub-flag{
+  position:fixed;
+
+  top:78px;
+  left:0;
+
+  width:170px;
+
+  z-index:999;
+
+  animation:floatFlag 3s ease-in-out infinite;
 }
 
 </style>
@@ -513,207 +405,306 @@ body{
 
 <body>
 
+<!--HACK-CLUB-LOGO-->
+
+<a href="https://hackclub.com"
+target="_blank">
+
+  <img
+  src="assets/images/hackclub-flag.png"
+  class="hackclub-flag">
+
+</a>
+
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
-  <a href="index.html" class="logo-wrap">
-    <img src="assets/images/elyra-logo.png" class="logo-img">
-    <span class="logo-text">ELYRA</span>
+  <a href="index.html"
+  class="logo-wrap">
+
+    <img src="assets/images/elyra-logo.png"
+    class="logo-img">
+
+    <span class="logo-text">
+      ELYRA
+    </span>
+
   </a>
 
   <ul class="nav-links">
-    <li><a href="about.html">About</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="team.html">Team</a></li>
-    <li><a href="founders.html">Founders</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
 
-    <li class="dropdown">
-      <a href="#">Skill Arenas ▾</a>
-      <ul class="dropdown-menu">
-        <li><a href="helix-lab.html">Helix Lab</a></li>
-        <li><a href="nexus-forge.html">Nexus Forge</a></li>
-        <li><a href="appocalypse.html">Appocalypse</a></li>
-        <li><a href="aether-arena.html">Aether Arena</a></li>
-      </ul>
+    <li>
+      <a href="dashboard.html">
+        Dashboard
+      </a>
     </li>
 
-    <!-- AFTER LOGIN -->
-    <li id="dashboardLink" style="display:none;">
-      <a href="dashboard.html">Dashboard</a>
-    </li>
+    <li>
+      <a href="#"
+      id="logoutBtn">
 
-    <!-- BEFORE LOGIN -->
-    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
-    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+        Logout
 
-    <!-- LOGOUT -->
-    <li id="logoutBtn" style="display:none;">
-      <a href="#">Logout</a>
+      </a>
     </li>
 
   </ul>
+
 </nav>
 
-<button class="back-btn" onclick="goBack()">← Back</button>
+<!-- MAIN -->
 
 <div class="container">
-  <div class="hero">
 
-<h2>Edit Profile</h2>
+  <!-- LEFT -->
 
-<input id="username" placeholder="Username">
-<input id="fullname" placeholder="Full Name">
-<input id="phone" placeholder="Phone Number">
-<input id="email" placeholder="Email">
-<input id="dob" type="date">
-<input id="age" placeholder="Age">
+  <div class="card left">
 
-<h3>Fun Section 😎</h3>
+    <div class="avatar"
+    id="avatar">
 
-<input id="food" placeholder="Favorite Food">
-<input id="skill" placeholder="Favorite Skill">
-<input id="sport" placeholder="Favorite Sport">
-<input id="hobby" placeholder="Hobby">
+      E
 
-<button onclick="saveProfile()">Save Profile</button>
+    </div>
 
-<button onclick="goBack()">⬅ Back to Dashboard</button>
+    <h2 id="profileUsername">
+
+      Champ
+
+    </h2>
+
+    <p class="bio"
+    id="profileBio">
+
+      Future builder of Elyra 🚀
+
+    </p>
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+      <div class="stat">
+
+        <h3 id="currentCount">
+          0
+        </h3>
+
+        <p>
+          Current
+        </p>
+
+      </div>
+
+      <div class="stat">
+
+        <h3 id="pendingCount">
+          0
+        </h3>
+
+        <p>
+          Pending
+        </p>
+
+      </div>
+
+      <div class="stat">
+
+        <h3 id="completedCount">
+          0
+        </h3>
+
+        <p>
+          Completed
+        </p>
+
+      </div>
+
+      <div class="stat">
+
+        <h3 id="badgeCount">
+          0
+        </h3>
+
+        <p>
+          Badges
+        </p>
+
+      </div>
+
+      <div class="stat">
+
+        <h3 id="currentStreak">
+          1
+        </h3>
+
+        <p>
+          Current Streak
+        </p>
+
+      </div>
+
+      <div class="stat">
+
+        <h3 id="highestStreak">
+          1
+        </h3>
+
+        <p>
+          Highest Streak
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div class="input-box">
+
+        <label>
+          Username
+        </label>
+
+        <input id="username">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Full Name
+        </label>
+
+        <input id="name">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Email
+        </label>
+
+        <input id="email">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Phone
+        </label>
+
+        <input id="phone">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          DOB
+        </label>
+
+        <input type="date"
+        id="dob">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Age
+        </label>
+
+        <input id="age">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Favorite Food
+        </label>
+
+        <input id="food">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Favorite Skill
+        </label>
+
+        <input id="skill">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Favorite Sport
+        </label>
+
+        <input id="sport">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>
+          Hobby
+        </label>
+
+        <input id="hobby">
+
+      </div>
+
+      <div class="input-box"
+      style="grid-column:1/3;">
+
+        <label>
+          Goals
+        </label>
+
+        <textarea id="goal"></textarea>
+
+      </div>
+
+      <div class="input-box"
+      style="grid-column:1/3;">
+
+        <label>
+          Bio
+        </label>
+
+        <textarea id="bio"></textarea>
+
+      </div>
+
+    </div>
+
+    <button class="save-btn"
+    id="saveBtn">
+
+      Save Profile 🚀
+
+    </button>
+
+  </div>
 
 </div>
-</div>
-<script>
 
-// 🔥 LOAD OLD DATA
-const data = JSON.parse(localStorage.getItem("elyra_profile")) || {};
-
-for(let key in data){
-  if(document.getElementById(key)){
-    document.getElementById(key).value = data[key];
-  }
-}
-
-// 🔥 SAVE
-function saveProfile(){
-
-  const profile = {
-    username: document.getElementById("username").value,
-    fullname: document.getElementById("fullname").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    dob: document.getElementById("dob").value,
-    age: document.getElementById("age").value,
-    food: document.getElementById("food").value,
-    skill: document.getElementById("skill").value,
-    sport: document.getElementById("sport").value,
-    hobby: document.getElementById("hobby").value
-  };
-
-  localStorage.setItem("elyra_profile", JSON.stringify(profile));
-
-  alert("Profile Saved ✅");
-}
-
-// 🔥 BACK
-function goBack(){
-  location.href="dashboard.html";
-}
-
-</script>
-
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-
-/* CONFIG */
-const firebaseConfig = {
-  apiKey: "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
-  authDomain: "nova-club-vinayak.firebaseapp.com",
-  projectId: "nova-club-vinayak"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-/* LOAD */
-onAuthStateChanged(auth, async(user)=>{
-
-if(!user) return location.href="login.html";
-
-const ref = doc(db,"members",user.uid);
-const snap = await getDoc(ref);
-const data = snap.data() || {};
-
-/* DISPLAY */
-name.innerText = data.name || "User";
-username.innerText = "@"+(data.username||"username");
-bio.innerText = data.bio || "-";
-hobby.innerText = data.hobby || "-";
-food.innerText = data.food || "-";
-goal.innerText = data.goal || "-";
-skills.innerText = data.skills || "-";
-
-if(data.avatar){
-  avatar.src = data.avatar;
-}
-
-});
-
-/* MODAL */
-window.openModal=()=>modal.style.display="flex";
-window.closeModal=()=>modal.style.display="none";
-
-/* SAVE */
-window.saveProfile = async()=>{
-
-const user = auth.currentUser;
-
-let avatarURL="";
-
-/* IMAGE BASE64 */
-const file = eAvatar.files[0];
-
-if(file){
-  const reader = new FileReader();
-  reader.onload = async function(){
-    avatarURL = reader.result;
-
-    await saveData(avatarURL);
-  };
-  reader.readAsDataURL(file);
-}else{
-  await saveData("");
-}
-
-};
-
-async function saveData(avatarURL){
-
-const user = auth.currentUser;
-
-await setDoc(doc(db,"members",user.uid),{
-
-name:eName.value,
-username:eUsername.value,
-bio:eBio.value,
-hobby:eHobby.value,
-food:eFood.value,
-goal:eGoal.value,
-skills:eSkills.value,
-avatar:avatarURL || avatar.src
-
-},{merge:true});
-
-location.reload();
-}
-
-/* NAV */
-window.goBack=()=>location.href="dashboard.html";
-
+<script type="module"
+src="js/profile.js">
 </script>
 
 </body>

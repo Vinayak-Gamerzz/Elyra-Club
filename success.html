@@ -1,116 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Success</title>
 
-<link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Success - Elyra</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  background: #050505;
-  color: white;
-  font-family: 'Orbitron', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
+
+  font-family:'Inter',sans-serif;
+
+  background:
+  radial-gradient(circle at top left, rgba(168,85,247,0.18), transparent 30%),
+  radial-gradient(circle at bottom right, rgba(103,232,249,0.18), transparent 30%),
+  linear-gradient(135deg,#0B1020,#111827,#0F172A);
+
+  position:relative;
+}
+
+/* GRID BG */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  z-index:-10;
+}
+
+/* CARD */
+
+.success-card{
+
+  width:520px;
+
+  padding:60px 40px;
+
+  border-radius:36px;
+
+  text-align:center;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(20px);
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.success-card::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(255,255,255,0.04),
+  transparent
+  );
+
+  pointer-events:none;
 }
 
 /* ICON */
-.circle {
-  width: 100px;
-  height: 100px;
-  border: 3px solid #8a2be2;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: pop 0.6s ease;
+
+.circle{
+
+  width:120px;
+  height:120px;
+
+  margin:auto;
+
+  border-radius:50%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(103,232,249,0.18),
+  rgba(168,85,247,0.18)
+  );
+
+  border:2px solid rgba(255,255,255,0.08);
+
+  animation:pop 0.6s ease;
 }
 
-.check {
-  font-size: 40px;
-  color: #8a2be2;
+.check{
+  font-size:52px;
+  color:#67E8F9;
 }
 
 /* TEXT */
-h1 {
-  margin-top: 20px;
-  font-size: 40px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+h1{
+  margin-top:30px;
+
+  font-size:52px;
+
+  font-family:'Orbitron';
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
-p {
-  color: #aaa;
-  margin-top: 10px;
+p{
+  margin-top:18px;
+
+  color:#CBD5E1;
+
+  line-height:1.8;
+
+  font-size:17px;
 }
 
 /* BUTTON */
-.btn {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border-radius: 25px;
-  background: linear-gradient(90deg,#8a2be2,#ff00cc);
-  border: none;
-  color: white;
-  cursor: pointer;
+
+.btn{
+
+  margin-top:32px;
+
+  padding:16px 34px;
+
+  border:none;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  color:black;
+
+  font-weight:700;
+
+  font-size:15px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.btn:hover{
+
+  transform:
+  translateY(-4px)
+  scale(1.03);
+
+  box-shadow:
+  0 0 35px rgba(103,232,249,0.25);
+}
+
+/* GLOW */
+
+.glow{
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  background:
+  radial-gradient(circle,
+  rgba(168,85,247,0.16),
+  transparent 70%);
+
+  filter:blur(90px);
+
+  z-index:-1;
 }
 
 /* ANIMATION */
-@keyframes pop {
-  from { transform: scale(0.5); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+
+@keyframes pop{
+
+  from{
+    transform:scale(0.5);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+
 }
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .success-card{
+    width:92%;
+    padding:50px 25px;
+  }
+
+  h1{
+    font-size:38px;
+  }
+
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="circle">
-  <div class="check">✔</div>
+<div class="glow"></div>
+
+<div class="success-card">
+
+  <div class="circle">
+    <div class="check">
+      ✔
+    </div>
+  </div>
+
+  <h1 id="title">
+    Success 🎉
+  </h1>
+
+  <p id="desc">
+    Redirecting to dashboard...
+  </p>
+
+  <button class="btn"
+  onclick="goDashboard()">
+
+    Enter Dashboard
+
+  </button>
+
 </div>
 
-<h1 id="title">Success 🎉</h1>
-<p id="desc">Redirecting...</p>
-
-<button class="btn" onclick="goDashboard()">Go to Dashboard</button>
-
 <script>
+
 let seconds = 3;
 
-const desc = document.getElementById("desc");
+const desc =
+document.getElementById("desc");
 
-setInterval(() => {
+const interval = setInterval(()=>{
+
   seconds--;
-  desc.innerText = "Redirecting to dashboard in " + seconds + "s";
 
-  if (seconds <= 0) {
-    window.location.href = "dashboard.html";
+  desc.innerText =
+  "Redirecting to dashboard in "
+  + seconds + "s";
+
+  if(seconds <= 0){
+
+    clearInterval(interval);
+
+    window.location.href =
+    "dashboard.html";
   }
-}, 1000);
 
-function goDashboard() {
-  window.location.href = "dashboard.html";
+},1000);
+
+function goDashboard(){
+
+  window.location.href =
+  "dashboard.html";
 }
 
-/* 🔥 CUSTOM TEXT FROM LOGIN/JOIN */
-const type = localStorage.getItem("type");
+/* CUSTOM TEXT */
 
-if (type === "login") {
-  document.getElementById("title").innerText = "Login Successful 👋";
-} else if (type === "join") {
-  document.getElementById("title").innerText = "Joined Successfully 🎉";
+const type =
+localStorage.getItem("type");
+
+if(type === "login"){
+
+  document.getElementById("title")
+  .innerText =
+  "Login Successful 👋";
+
+}else if(type === "join"){
+
+  document.getElementById("title")
+  .innerText =
+  "Joined Successfully 🎉";
 }
+
 </script>
-
-<script type="module" src="js/auth.js"></script>
 
 </body>
 </html>

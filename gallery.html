@@ -1,282 +1,404 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Gallery - Elyra</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-  /* NAVBAR FONT */
-.nav-links a {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 500;
+/* ===== GLOBAL ===== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* BUTTON TEXT */
-.btn-primary,
-.btn-secondary {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
+body{
+  font-family:'Inter',sans-serif;
+  color:#E5E7EB;
+  overflow-x:hidden;
+  padding-top:110px;
+
+  background:
+    radial-gradient(circle at top left, rgba(139,92,246,0.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(103,232,249,0.18), transparent 30%),
+    linear-gradient(135deg,#0B1020,#111827,#0F172A);
+
+  background-attachment:fixed;
+
+  position:relative;
 }
 
-/* NAV LINK UNDERLINE EFFECT */
-.nav-links a {
-  position: relative;
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  pointer-events:none;
+
+  z-index:-10;
 }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: #00ffc8;
-  transition: 0.3s;
+/* ===== NAVBAR ===== */
+
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:22px 6%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(10,15,30,0.78);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  z-index:99999;
 }
 
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 35px;
-  left: 0;
-  background: rgba(15,15,15,0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 8px 0;
-  display: none;
-  min-width: 180px;
-  border: 1px solid rgba(0,255,200,0.2);
-  box-shadow: 0 0 20px rgba(0,255,200,0.15);
-}
-
-/* SHOW DROPDOWN */
-.dropdown:hover .dropdown-menu {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropdown-menu li {
-  list-style: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-/* HOVER EFFECT INSIDE DROPDOWN */
-.dropdown-menu a:hover {
-  background: rgba(0,255,200,0.1);
-  color: #00ffc8;
-  transform: translateX(5px);
-}
-
-            /* NAVBAR */
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                padding: 18px 6%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: rgba(5,5,5,0.9);
-                background-filter: blur(10px);
-                border-bottom: 1px solid rgba(0,255,200,0.2);
-                z-index: 1000;
-            }
-
-            .logo {
-                font-size: 22px;
-                font-weight: 700;
-                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-decoration: none;
-            }
-
-            .nav-links {
-                list-style: none;
-                display: flex;
-                gap: 20px;
-            }
-
-            .nav-links a {
-                color: #ccc;
-                text-decoration: none;
-                font-size: 14px;
-                transition: 0.3s;
-            }
-
-            .nav-links a:hover {
-                color: #00ffc8;
-            }
-            
-.back-btn {
-  color: #00ffc8;
-}
-
-.logo{
+.logo-wrap{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  text-decoration:none;
 }
 
 .logo-img{
-  width:32px;
+  width:34px;
 }
 
 .logo-text{
-  font-size:20px;
-  font-weight:600;
-  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  font-size:24px;
+  font-family:'Orbitron';
+  font-weight:700;
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
   -webkit-background-clip:text;
   color:transparent;
 }
 
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#CBD5E1;
+
+  font-size:15px;
+  font-weight:500;
+
+  transition:0.3s;
+
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0%;
+  height:2px;
+  background:#67E8F9;
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-links a:hover{
+  color:#67E8F9;
+}
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:40px;
+  left:0;
+
+  background:rgba(15,20,35,0.92);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:16px;
+
+  display:none;
+
+  padding:10px;
+
+  min-width:210px;
+
+  backdrop-filter:blur(16px);
+
+  z-index:99999;
+}
+
+.dropdown-menu li{
+  list-style:none;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:12px 14px;
+  color:#CBD5E1;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.dropdown-menu a:hover{
+  color:#67E8F9;
+  background:rgba(103,232,249,0.08);
+  transform:translateX(4px);
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+/* ===== BACK BTN ===== */
+
+.back-btn{
+  position:fixed;
+
+  top:120px;
+  left:30px;
+
+  padding:12px 24px;
+
+  border:none;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,0.06);
+
+  backdrop-filter:blur(12px);
+
+  color:#67E8F9;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  z-index:9999;
+}
+
+.back-btn:hover{
+  transform:translateY(-3px);
+}
+
 /* ===== HERO ===== */
+
 .hero{
   text-align:center;
-  margin-top:10px;
+  padding:30px 20px;
 }
 
 .hero h1{
+  font-size:68px;
+
   font-family:'Orbitron';
-  font-size:42px;
-  background:linear-gradient(90deg,#8a2be2,#ff00cc);
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
   -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:transparent;
+
+  margin-bottom:18px;
 }
 
 .hero p{
-  color:#aaa;
+  color:#CBD5E1;
+  font-size:18px;
 }
 
-/* ===== GALLERY GRID ===== */
+/* ===== GALLERY ===== */
+
 .gallery{
+  width:88%;
+  margin:auto;
+
   display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:30px;
-  padding:40px 6%;
+  grid-template-columns:repeat(2,1fr);
+
+  gap:35px;
+
+  padding:40px 0 80px;
 }
 
 @media(max-width:768px){
+
   .gallery{
     grid-template-columns:1fr;
   }
+
+  .hero h1{
+    font-size:48px;
+  }
+
 }
 
-/* ===== IMAGE CARD ===== */
+/* ===== ITEM ===== */
+
 .gallery-item{
   position:relative;
+
   overflow:hidden;
-  border-radius:14px;
+
+  border-radius:28px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  cursor:pointer;
+
+  transition:0.35s ease;
 }
 
-.gallery-text{
-  position:absolute;
-  bottom:0;
-  left: 0;
-  width:100%;
-  padding:12px;
-  background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  font-size:14px;
-  text-align:center;
-  transition:0.3s;
-  color: #fff;
-  z-index:2;
+.gallery-item:hover{
+  transform:translateY(-8px);
+
+  box-shadow:
+  0 0 35px rgba(103,232,249,0.12);
 }
 
 .gallery-item img{
   width:100%;
-  height:100%;
+  height:420px;
+
   object-fit:cover;
+
+  display:block;
+
   transition:0.4s;
 }
 
-/* hover zoom */
 .gallery-item:hover img{
-  transform:scale(1.08);
+  transform:scale(1.05);
 }
 
-/* glow border */
-.gallery-item::after{
-  content:"";
+/* ===== TEXT ===== */
+
+.gallery-text{
   position:absolute;
-  inset:0;
-  border:1px solid rgba(0,255,200,0.2);
-  border-radius:14px;
-  pointer-events:none;
+
+  bottom:0;
+  left:0;
+
+  width:100%;
+
+  padding:18px;
+
+  background:
+  linear-gradient(
+  to top,
+  rgba(0,0,0,0.85),
+  transparent
+  );
+
+  color:white;
+
+  font-size:15px;
+
+  font-weight:500;
 }
 
-.gallery-item:hover{
-  box-shadow:0 0 25px rgba(0,255,200,0.25);
-}
+/* ===== LIGHTBOX ===== */
 
 #lightbox{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.95);
+  inset:0;
+
+  background:rgba(0,0,0,0.92);
+
   display:none;
+
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  z-index:9999;
+
+  z-index:999999;
 }
 
 #lightbox img{
   max-width:85%;
   max-height:80%;
-  border-radius:12px;
+
+  border-radius:20px;
+
+  border:1px solid rgba(255,255,255,0.08);
 }
 
 #lightbox-text{
-  margin-top:15px;
-  color:#ccc;
+  margin-top:20px;
+
+  color:#E5E7EB;
+
+  font-size:18px;
 }
 
 #close{
   position:absolute;
-  top:20px;
-  right:30px;
-  font-size:40px;
+
+  top:25px;
+  right:35px;
+
+  font-size:42px;
+
   color:white;
+
   cursor:pointer;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
   <a href="index.html" class="logo-wrap">
@@ -285,173 +407,288 @@
   </a>
 
   <ul class="nav-links">
+
     <li><a href="about.html">About</a></li>
+
     <li><a href="events.html">Events</a></li>
+
     <li><a href="team.html">Team</a></li>
+
     <li><a href="founders.html">Founders</a></li>
+
     <li><a href="gallery.html">Gallery</a></li>
 
     <li class="dropdown">
+
       <a href="#">Skill Arenas ▾</a>
+
       <ul class="dropdown-menu">
+
         <li><a href="helix-lab.html">Helix Lab</a></li>
+
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
+
         <li><a href="appocalypse.html">Appocalypse</a></li>
+
         <li><a href="aether-arena.html">Aether Arena</a></li>
+
       </ul>
+
     </li>
 
-    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
 
-    <!-- BEFORE LOGIN -->
-    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
-    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+    <li id="joinBtn">
+      <a href="join.html">Join</a>
+    </li>
 
-    <!-- LOGOUT -->
+    <li id="loginBtn">
+      <a href="login.html">Login</a>
+    </li>
+
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
+
 </nav>
 
-<button class="back-btn" onclick="goBack()">← Back</button>
+<!-- BACK -->
 
-<div class="container">
+<button class="back-btn"
+onclick="location.href='index.html'">
+← Back
+</button>
 
 <!-- HERO -->
+
 <div class="hero">
+
   <h1>Gallery</h1>
-  <p>Moments, Builds & Memories 📸</p>
+
+  <p>
+    Moments, builds & memories 📸
+  </p>
+
 </div>
 
 <!-- GALLERY -->
+
 <div class="gallery">
 
-  <!-- 🔥 IMAGE 1 -->
+  <!-- IMAGE 1 -->
+
   <div class="gallery-item">
+
     <img src="assets/gallery/img1.jpeg">
 
     <div class="gallery-text">
-      Website In Making!! Yayy
+      Website in making!! Yayy 🚀
     </div>
+
   </div>
 
-  <!-- 🔥 IMAGE 2 -->
+  <!-- IMAGE 2 -->
+
   <div class="gallery-item">
+
     <img src="assets/gallery/img2.jpg">
+
+    <div class="gallery-text">
+      Creative build session ✨
+    </div>
+
   </div>
 
-  <!-- 🔥 IMAGE 3 -->
+  <!-- IMAGE 3 -->
+
   <div class="gallery-item">
+
     <img src="assets/gallery/img3.jpg">
+
+    <div class="gallery-text">
+      Team brainstorming moments 💡
+    </div>
+
   </div>
 
-  <!-- 🔥 IMAGE 4 -->
+  <!-- IMAGE 4 -->
+
   <div class="gallery-item">
+
     <img src="assets/gallery/img4.jpg">
+
+    <div class="gallery-text">
+      Late night building energy 🌌
+    </div>
+
   </div>
 
-  <!-- 🔥 IMAGE 5 -->
+  <!-- IMAGE 5 -->
+
   <div class="gallery-item">
+
     <img src="assets/gallery/img5.jpg">
+
+    <div class="gallery-text">
+      Creating futuristic ideas ⚡
+    </div>
+
   </div>
 
-  <!-- 🔥 IMAGE 6 -->
+  <!-- IMAGE 6 -->
+
   <div class="gallery-item">
+
     <img src="assets/gallery/img6.jpg">
+
+    <div class="gallery-text">
+      Elyra memories 📸
+    </div>
+
   </div>
 
 </div>
 
-
-</div>
-
-</div>
-
-<script>
-function goBack(){ location.href="index.html"; }
-</script>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-
-const app = initializeApp({
-  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
-  authDomain:"nova-club-vinayak.firebaseapp.com",
-  projectId:"nova-club-vinayak"
-});
-
-const auth = getAuth(app);
-
-// 🔥 NAVBAR CONTROL
-onAuthStateChanged(auth, (user) => {
-
-  const loginBtn = document.getElementById("loginBtn");
-  const joinBtn = document.getElementById("joinBtn");
-  const dashboardLink = document.getElementById("dashboardLink");
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  if(user){
-    if(loginBtn) loginBtn.style.display="none";
-    if(joinBtn) joinBtn.style.display="none";
-    if(dashboardLink) dashboardLink.style.display="block";
-    if(logoutBtn) logoutBtn.style.display="block";
-  } else {
-    if(loginBtn) loginBtn.style.display="block";
-    if(joinBtn) joinBtn.style.display="block";
-    if(dashboardLink) dashboardLink.style.display="none";
-    if(logoutBtn) logoutBtn.style.display="none";
-  }
-});
-
-// 🔥 LOGOUT
-const logoutBtn = document.getElementById("logoutBtn");
-if(logoutBtn){
-  logoutBtn.onclick = async ()=>{
-    await signOut(auth);
-    location.reload();
-  };
-}
-</script>
-
+<!-- LIGHTBOX -->
 
 <div id="lightbox">
-  <span id="close">&times;</span>
+
+  <span id="close">
+    &times;
+  </span>
+
   <img id="lightbox-img">
+
   <p id="lightbox-text"></p>
+
 </div>
 
 <script>
-const items = document.querySelectorAll(".gallery-item");
-const lightbox = document.getElementById("lightbox");
-const img = document.getElementById("lightbox-img");
-const text = document.getElementById("lightbox-text");
+
+/* ===== LIGHTBOX ===== */
+
+const items =
+document.querySelectorAll(".gallery-item");
+
+const lightbox =
+document.getElementById("lightbox");
+
+const img =
+document.getElementById("lightbox-img");
+
+const text =
+document.getElementById("lightbox-text");
 
 items.forEach(item=>{
+
   item.onclick = ()=>{
-    img.src = item.querySelector("img").src;
-    text.innerText = item.querySelector(".gallery-text").innerText;
+
+    img.src =
+    item.querySelector("img").src;
+
+    text.innerText =
+    item.querySelector(".gallery-text").innerText;
+
     lightbox.style.display="flex";
-  }
+  };
+
 });
 
 document.getElementById("close").onclick = ()=>{
+
   lightbox.style.display="none";
 };
 
 lightbox.onclick = (e)=>{
+
   if(e.target===lightbox){
+
     lightbox.style.display="none";
   }
+
 };
+
+</script>
+
+<script type="module">
+
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const app = initializeApp({
+
+  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+
+  authDomain:"nova-club-vinayak.firebaseapp.com",
+
+  projectId:"nova-club-vinayak"
+
+});
+
+const auth = getAuth(app);
+
+/* NAVBAR ELEMENTS */
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const joinBtn =
+document.getElementById("joinBtn");
+
+const dashboardLink =
+document.getElementById("dashboardLink");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+/* AUTH CHECK */
+
+onAuthStateChanged(auth,(user)=>{
+
+  if(user){
+
+    loginBtn.style.display="none";
+
+    joinBtn.style.display="none";
+
+    dashboardLink.style.display="block";
+
+    logoutBtn.style.display="block";
+
+  }else{
+
+    loginBtn.style.display="block";
+
+    joinBtn.style.display="block";
+
+    dashboardLink.style.display="none";
+
+    logoutBtn.style.display="none";
+  }
+
+});
+
+/* LOGOUT */
+
+logoutBtn.onclick = async ()=>{
+
+  await signOut(auth);
+
+  location.href="index.html";
+};
+
 </script>
 
 </body>
-
 </html>

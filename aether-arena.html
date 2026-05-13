@@ -821,7 +821,10 @@ View Program
 </button>
 </a>
 
-<button onclick="addToDashboard({
+<button
+id="sprig-btn"
+
+onclick="addToDashboard({
 id:'sprig',
 name:'Sprig',
 desc:'Build JavaScript pixel games.',
@@ -859,7 +862,10 @@ View Program
 </button>
 </a>
 
-<button onclick="addToDashboard({
+<button
+id="hack-game-btn"
+
+onclick="addToDashboard({
 id:'hack-game',
 name:'Hack Club: The Game',
 desc:'Interactive game experiences.',
@@ -900,7 +906,10 @@ View Program
 </button>
 </a>
 
-<button onclick="addToDashboard({
+<button
+id="macondo-btn"
+
+onclick="addToDashboard({
 id:'macondo',
 name:'Macondo',
 desc:'Creative storytelling & interactive systems.',
@@ -940,7 +949,10 @@ View Program
 </button>
 </a>
 
-<button onclick="addToDashboard({
+<button
+id="horizons-btn"
+
+onclick="addToDashboard({
 id:'horizons',
 name:'Horizons',
 desc:'Experimental web experiences.',
@@ -980,7 +992,10 @@ View Program
 </button>
 </a>
 
-<button onclick="addToDashboard({
+<button
+id="aces-btn"
+
+onclick="addToDashboard({
 id:'aces',
 name:'Aces',
 desc:'Competitive advanced game development.',
@@ -1020,7 +1035,10 @@ View Program
 </button>
 </a>
 
-<button onclick="addToDashboard({
+<button
+id="milky-way-btn"
+
+onclick="addToDashboard({
 id:'milky-way',
 name:'Milky Way',
 desc:'Space-inspired creative game projects.',
@@ -1037,33 +1055,194 @@ Add to Dashboard
 </div>
 </div>
 
-<script>
+<script type="module">
 
-function addToDashboard(project, btn){
+import {
 
-  let projects =
-  JSON.parse(localStorage.getItem("elyra_projects")) || [];
+auth,
+logout,
 
-  if(projects.some(p => p.id === project.id)){
+authState,
 
-    btn.innerText = "Added ✔";
+addProject,
+loadProjects
+
+} from "./js/firebase.js";
+
+/* NAVBAR */
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const joinBtn =
+document.getElementById("joinBtn");
+
+const dashboardLink =
+document.getElementById("dashboardLink");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+/* AUTH */
+
+authState(async(user)=>{
+
+  if(user){
+
+    loginBtn.style.display =
+    "none";
+
+    joinBtn.style.display =
+    "none";
+
+    dashboardLink.style.display =
+    "block";
+
+    logoutBtn.style.display =
+    "block";
+
+    await checkProjects();
+
+  }else{
+
+    loginBtn.style.display =
+    "block";
+
+    joinBtn.style.display =
+    "block";
+
+    dashboardLink.style.display =
+    "none";
+
+    logoutBtn.style.display =
+    "none";
+  }
+
+});
+
+/* LOGOUT */
+
+logoutBtn.onclick =
+async ()=>{
+
+  await logout();
+
+  location.href =
+  "index.html";
+};
+
+/* ADD TO DASHBOARD */
+
+window.addToDashboard =
+async function(project,btn){
+
+  const projects =
+  await loadProjects();
+
+  const exists =
+  projects.find(
+    p => p.id === project.id
+  );
+
+  /* COMPLETED */
+
+  if(
+    exists &&
+    exists.status === "completed"
+  ){
+
+    btn.innerText =
+    "Completed ✅";
+
     btn.disabled = true;
 
     return;
   }
 
-  projects.push(project);
+  /* PENDING */
 
-  localStorage.setItem(
-  "elyra_projects",
-  JSON.stringify(projects)
-  );
+  if(
+    exists &&
+    exists.status === "pending"
+  ){
 
-  btn.innerText = "Added ✔";
+    btn.innerText =
+    "Pending ⏳";
+
+    btn.disabled = true;
+
+    return;
+  }
+
+  /* CURRENT */
+
+  if(exists){
+
+    btn.innerText =
+    "Added ✔";
+
+    btn.disabled = true;
+
+    return;
+  }
+
+  /* ADD */
+
+  await addProject(project);
+
+  btn.innerText =
+  "Added ✔";
+
   btn.disabled = true;
+};
+
+/* CHECK PROJECTS */
+
+async function checkProjects(){
+
+  const projects =
+  await loadProjects();
+
+  projects.forEach(p=>{
+
+    const btn =
+    document.getElementById(
+      p.id + "-btn"
+    );
+
+    if(btn){
+
+      if(
+        p.status === "completed"
+      ){
+
+        btn.innerText =
+        "Completed ✅";
+      }
+
+      else if(
+        p.status === "pending"
+      ){
+
+        btn.innerText =
+        "Pending ⏳";
+      }
+
+      else{
+
+        btn.innerText =
+        "Added ✔";
+      }
+
+      btn.disabled = true;
+    }
+
+  });
+
 }
 
 </script>
+
 
 </body>
 </html>

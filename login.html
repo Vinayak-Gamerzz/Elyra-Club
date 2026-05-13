@@ -1,83 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Login - Elyra</title>
 
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  background: #050505;
-  color: white;
-  font-family: 'Nunito', sans-serif;
-  margin: 0;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* CENTER BOX */
-.container {
-  padding-top: 120px;
-  display: flex;
-  justify-content: center;
+body{
+  font-family:'Inter',sans-serif;
+  color:white;
+  overflow-x:hidden;
+
+  background:
+  radial-gradient(circle at top left, rgba(168,85,247,0.18), transparent 30%),
+  radial-gradient(circle at bottom right, rgba(103,232,249,0.18), transparent 30%),
+  linear-gradient(135deg,#0B1020,#111827,#0F172A);
+
+  min-height:100vh;
 }
 
-.box {
-  background: #111;
-  padding: 30px;
-  border-radius: 12px;
-  width: 320px;
+/* GRID BG */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  z-index:-10;
 }
 
-/* INPUTS */
-input {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 10px;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: white;
-  border-radius: 6px;
+/* ===== NAVBAR ===== */
+
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:22px 6%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(10,15,30,0.78);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  z-index:9999;
 }
 
-/* BUTTON */
-button {
-  width: 100%;
-  padding: 10px;
-  background: linear-gradient(90deg,#00ffc8,#00aaff);
-  border: none;
-  font-weight: bold;
-  color: black;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0,255,200,0.5);
-}
-
-#msg {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.logo{
+.logo-wrap{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  text-decoration:none;
 }
 
 .logo-img{
-  width:32px;
+  width:34px;
 }
 
 .logo-text{
-  font-size:20px;
-  font-weight:600;
-  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  font-size:24px;
+  font-family:'Orbitron';
+  font-weight:700;
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
   -webkit-background-clip:text;
   color:transparent;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#CBD5E1;
+
+  font-size:15px;
+  font-weight:500;
+
+  transition:0.3s;
+
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+
+  left:0;
+  bottom:-5px;
+
+  width:0%;
+  height:2px;
+
+  background:#67E8F9;
+
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-links a:hover{
+  color:#67E8F9;
+}
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:40px;
+  left:0;
+
+  background:rgba(15,20,35,0.92);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:16px;
+
+  display:none;
+
+  padding:10px;
+
+  min-width:210px;
+
+  backdrop-filter:blur(16px);
+
+  box-shadow:
+  0 0 30px rgba(103,232,249,0.08);
+}
+
+.dropdown-menu li{
+  list-style:none;
+}
+
+.dropdown-menu a{
+  display:block;
+
+  padding:12px 14px;
+
+  color:#CBD5E1;
+
+  border-radius:10px;
+
+  transition:0.3s;
+}
+
+.dropdown-menu a:hover{
+  color:#67E8F9;
+
+  background:
+  rgba(103,232,249,0.08);
+
+  transform:translateX(4px);
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn-primary{
+  padding:12px 24px;
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  color:black !important;
+  font-weight:700;
+}
+
+.btn-secondary{
+  padding:12px 24px;
+  border-radius:999px;
+
+  border:1px solid #67E8F9;
+
+  color:#67E8F9 !important;
+}
+
+/* ===== FLOATING FLAG ===== */
+
+.hackclub-flag{
+  position:fixed;
+
+  top:78px;
+  left:0;
+
+  width:250px;
+
+  z-index:999;
+
+  animation:floatFlag 3s ease-in-out infinite;
+}
+
+@keyframes floatFlag{
+
+  0%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+  50%{
+    transform:translateY(10px) rotate(2deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:140px 20px 80px;
+}
+
+/* ===== LOGIN BOX ===== */
+
+.box{
+  width:430px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(20px);
+
+  border-radius:32px;
+
+  padding:40px;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.box::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(255,255,255,0.04),
+  transparent
+  );
+
+  pointer-events:none;
+}
+
+.box h2{
+  font-size:42px;
+
+  font-family:'Orbitron';
+
+  margin-bottom:30px;
+
+  text-align:center;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ===== INPUTS ===== */
+
+input{
+  width:100%;
+
+  padding:16px;
+
+  margin-bottom:18px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,0.06);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  color:white;
+
+  font-size:15px;
+
+  outline:none;
+}
+
+input::placeholder{
+  color:#94A3B8;
+}
+
+/* ===== BUTTON ===== */
+
+button{
+  width:100%;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  color:black;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+  0 0 30px rgba(103,232,249,0.2);
+}
+
+/* ===== MESSAGE ===== */
+
+#msg{
+  text-align:center;
+  margin-top:16px;
+  color:#F87171;
+}
+
+/* ===== EXTRA ===== */
+
+.login-bottom{
+  text-align:center;
+
+  margin-top:24px;
+
+  color:#CBD5E1;
+}
+
+.login-bottom a{
+  color:#67E8F9;
+  text-decoration:none;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:600px){
+
+  .box{
+    width:100%;
+    padding:30px;
+  }
+
+  .nav-links{
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:12px;
+  }
+
 }
 
 </style>
@@ -86,7 +432,19 @@ button:hover {
 
 <body>
 
+<!-- HACK CLUB FLAG -->
+
+<a href="https://hackclub.com"
+target="_blank">
+
+  <img
+  src="assets/images/hackclub-flag.png"
+  class="hackclub-flag">
+
+</a>
+
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
   <a href="index.html" class="logo-wrap">
@@ -95,6 +453,7 @@ button:hover {
   </a>
 
   <ul class="nav-links">
+
     <li><a href="about.html">About</a></li>
     <li><a href="events.html">Events</a></li>
     <li><a href="team.html">Team</a></li>
@@ -102,103 +461,173 @@ button:hover {
     <li><a href="gallery.html">Gallery</a></li>
 
     <li class="dropdown">
+
       <a href="#">Skill Arenas ▾</a>
+
       <ul class="dropdown-menu">
+
         <li><a href="helix-lab.html">Helix Lab</a></li>
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
         <li><a href="appocalypse.html">Appocalypse</a></li>
         <li><a href="aether-arena.html">Aether Arena</a></li>
+
       </ul>
+
     </li>
 
-    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
 
-    <!-- BEFORE LOGIN -->
-    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
-    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+    <li id="joinBtn">
+      <a href="join.html" class="btn-secondary">
+        Join
+      </a>
+    </li>
 
-    <!-- LOGOUT -->
+    <li id="loginBtn">
+      <a href="login.html" class="btn-primary">
+        Login
+      </a>
+    </li>
+
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
+
 </nav>
 
 <!-- LOGIN FORM -->
+
 <div class="container">
+
   <div class="box">
 
     <h2>Login</h2>
 
     <form id="loginForm">
 
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
+      <input
+      type="email"
+      id="email"
+      placeholder="Email"
+      required>
 
-      <button type="submit">Login</button>
+      <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      required>
+
+      <button type="submit">
+        Login To Elyra
+      </button>
 
     </form>
 
     <p id="msg"></p>
 
+    <div class="login-bottom">
+
+      Don't have an account?
+
+      <a href="join.html">
+        Join Elyra
+      </a>
+
+    </div>
+
   </div>
+
 </div>
 
 <!-- FIREBASE -->
+
 <script type="module">
 
 localStorage.setItem("elyraUser", "true");
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+getAuth,
+signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
-  authDomain: "nova-club-vinayak.firebaseapp.com",
-  projectId: "nova-club-vinayak",
-  storageBucket: "nova-club-vinayak.firebasestorage.app",
-  messagingSenderId: "515398263626",
-  appId: "1:515398263626:web:bbf69430e0f960f48617b3"
+
+  apiKey:
+  "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+
+  authDomain:
+  "nova-club-vinayak.firebaseapp.com",
+
+  projectId:
+  "nova-club-vinayak",
+
+  storageBucket:
+  "nova-club-vinayak.firebasestorage.app",
+
+  messagingSenderId:
+  "515398263626",
+
+  appId:
+  "1:515398263626:web:bbf69430e0f960f48617b3"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const app =
+initializeApp(firebaseConfig);
 
-const form = document.getElementById("loginForm");
+const auth =
+getAuth(app);
 
-form.addEventListener("submit", async (e) => {
+const form =
+document.getElementById("loginForm");
+
+form.addEventListener("submit",
+async(e)=>{
+
   e.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email =
+  document.getElementById("email").value;
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
+  const password =
+  document.getElementById("password").value;
 
-/* 🔥 ADD THIS */
-localStorage.setItem("type", "login");
-localStorage.setItem("elyraUser", "true");
-window.location.href = "success.html";
+  try{
 
-    document.getElementById("msg").innerText = "Login Successful 🚀";
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-    setTimeout(() => {
-      window.location.href = "dashboard.html";
-    }, 1000);
+    localStorage.setItem("type","login");
 
-  } catch (error) {
-    document.getElementById("msg").innerText = error.message;
+    localStorage.setItem(
+      "elyraUser",
+      "true"
+    );
+
+    window.location.href =
+    "success.html";
+
+  }catch(error){
+
+    document.getElementById("msg")
+    .innerText = error.message;
+
   }
+
 });
 
-
 </script>
-
-<script type="module" src="js/auth.js"></script>
 
 </body>
 </html>

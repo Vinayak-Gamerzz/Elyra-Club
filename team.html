@@ -1,247 +1,388 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Team - Elyra</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-  /* NAVBAR FONT */
-.nav-links a {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 500;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* BUTTON TEXT */
-.btn-primary,
-.btn-secondary {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
+body{
+  font-family:'Inter',sans-serif;
+  color:white;
+  overflow-x:hidden;
+
+  background:
+  radial-gradient(circle at top left, rgba(168,85,247,0.18), transparent 30%),
+  radial-gradient(circle at bottom right, rgba(103,232,249,0.18), transparent 30%),
+  linear-gradient(135deg,#0B1020,#111827,#0F172A);
+
+  min-height:100vh;
 }
 
-/* NAV LINK UNDERLINE EFFECT */
-.nav-links a {
-  position: relative;
+/* GRID BG */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  z-index:-10;
 }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: #00ffc8;
-  transition: 0.3s;
+/* ===== NAVBAR ===== */
+
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:22px 6%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(10,15,30,0.78);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  z-index:99999;
 }
 
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 35px;
-  left: 0;
-  background: rgba(15,15,15,0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 8px 0;
-  display: none;
-  min-width: 180px;
-  border: 1px solid rgba(0,255,200,0.2);
-  box-shadow: 0 0 20px rgba(0,255,200,0.15);
-}
-
-/* SHOW DROPDOWN */
-.dropdown:hover .dropdown-menu {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropdown-menu li {
-  list-style: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-/* HOVER EFFECT INSIDE DROPDOWN */
-.dropdown-menu a:hover {
-  background: rgba(0,255,200,0.1);
-  color: #00ffc8;
-  transform: translateX(5px);
-}
-
-            /* NAVBAR */
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                padding: 18px 6%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: rgba(5,5,5,0.9);
-                background-filter: blur(10px);
-                border-bottom: 1px solid rgba(0,255,200,0.2);
-                z-index: 1000;
-            }
-
-            .logo {
-                font-size: 22px;
-                font-weight: 700;
-                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-decoration: none;
-            }
-
-            .nav-links {
-                list-style: none;
-                display: flex;
-                gap: 20px;
-            }
-
-            .nav-links a {
-                color: #ccc;
-                text-decoration: none;
-                font-size: 14px;
-                transition: 0.3s;
-            }
-
-            .nav-links a:hover {
-                color: #00ffc8;
-            }
-            
-.back-btn {
-  color: #00ffc8;
-}
-
-.logo{
+.logo-wrap{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  text-decoration:none;
 }
 
 .logo-img{
-  width:32px;
+  width:34px;
 }
 
 .logo-text{
-  font-size:20px;
-  font-weight:600;
-  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  font-size:24px;
+  font-family:'Orbitron';
+  font-weight:700;
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
   -webkit-background-clip:text;
   color:transparent;
 }
 
-/* ===== BODY ===== */
-body{
-  margin:0;
-  font-family:'Nunito';
-  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000);
-  color:white;
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  list-style:none;
 }
 
+.nav-links a{
+  text-decoration:none;
+  color:#CBD5E1;
 
-/* ===== HERO ===== */
+  font-size:15px;
+  font-weight:500;
+
+  transition:0.3s;
+
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0%;
+  height:2px;
+  background:#67E8F9;
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-links a:hover{
+  color:#67E8F9;
+}
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:40px;
+  left:0;
+
+  background:rgba(15,20,35,0.92);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:16px;
+
+  display:none;
+
+  padding:10px;
+
+  min-width:210px;
+
+  backdrop-filter:blur(16px);
+
+  z-index:99999;
+}
+
+.dropdown-menu li{
+  list-style:none;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:12px 14px;
+  color:#CBD5E1;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.dropdown-menu a:hover{
+  color:#67E8F9;
+  background:rgba(103,232,249,0.08);
+  transform:translateX(4px);
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+/* HACK CLUB FLAG */
+
+.hackclub-flag{
+  position:fixed;
+
+  top:78px;
+  left:0;
+
+  width:170px;
+
+  z-index:999;
+
+  animation:floatFlag 3s ease-in-out infinite;
+
+  pointer-events:none;
+}
+
+@keyframes floatFlag{
+
+  0%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+  50%{
+    transform:translateY(10px) rotate(2deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+}
+
+/* BACK BTN */
+
+.back-btn{
+  position:fixed;
+
+  top:110px;
+  left:30px;
+
+  padding:12px 22px;
+
+  border:none;
+  border-radius:999px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  color:#67E8F9;
+
+  cursor:pointer;
+
+  z-index:999;
+}
+
+/* HERO */
+
 .hero{
   text-align:center;
-  margin-top:120px;
-}
-.hero h1{
-  font-family:'Orbitron';
-  font-size:42px;
-  background:linear-gradient(90deg,#8a2be2,#ff00cc);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  padding-top:150px;
 }
 
-/* ===== SPOTLIGHT (Founder Section) ===== */
+.hero h1{
+  font-size:62px;
+
+  font-family:'Orbitron';
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+
+  margin-bottom:20px;
+}
+
+.hero p{
+  color:#CBD5E1;
+  font-size:18px;
+}
+
+/* FOUNDERS */
+
 .spotlight{
   display:flex;
   justify-content:center;
   gap:40px;
-  padding:40px 6%;
+
+  flex-wrap:wrap;
+
+  padding:60px 6%;
 }
 
 .spot-card{
-  width:260px;
-  padding:25px;
-  border-radius:18px;
+  width:320px;
+
+  padding:30px;
+
+  border-radius:30px;
+
   text-align:center;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(0,255,200,0.3);
-  box-shadow:0 0 30px rgba(0,255,200,0.2);
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(16px);
+
+  transition:0.3s;
+}
+
+.spot-card:hover{
+  transform:translateY(-8px);
+
+  box-shadow:
+  0 0 35px rgba(103,232,249,0.15);
 }
 
 .spot-card img{
-  width:120px;
-  height:120px;
+  width:130px;
+  height:130px;
+
   border-radius:50%;
+
   object-fit:cover;
-  border:2px solid #00ffc8;
+
+  border:3px solid #67E8F9;
 }
 
 .spot-card h3{
-  margin-top:15px;
+  margin-top:20px;
+
+  font-size:28px;
+
   font-family:'Orbitron';
 }
 
 .role{
-  color:#00ffc8;
-  font-size:14px;
+  margin-top:8px;
+
+  color:#67E8F9;
+
+  font-size:15px;
 }
 
-/* ===== GRID ===== */
+.spot-card p{
+  margin-top:14px;
+
+  color:#CBD5E1;
+
+  line-height:1.7;
+}
+
+/* TEAM GRID */
+
 .team-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+  repeat(2,1fr);
+
   gap:30px;
-  padding:40px 6%;
-  max-width: 900px;
-  margin: 0 auto;
+
+  width:90%;
+
+  max-width:1100px;
+
+  margin:0 auto 100px;
 }
 
-@media(max-width:768px){
+/* MOBILE */
+
+@media(max-width:700px){
+
   .team-grid{
     grid-template-columns:1fr;
   }
+
 }
 
-/* ===== FLIP CARD ===== */
+/* FLIP CARDS */
+
 .flip-card{
   perspective:1000px;
 }
 
 .flip-inner{
   position:relative;
+
   width:100%;
-  height:260px;
-  transition:transform 0.6s;
+  height:300px;
+
+  transition:transform 0.7s;
+
   transform-style:preserve-3d;
 }
 
@@ -249,59 +390,100 @@ body{
   transform:rotateY(180deg);
 }
 
-.flip-front, .flip-back{
+.flip-front,
+.flip-back{
+
   position:absolute;
+
   width:100%;
   height:100%;
-  backface-visibility:hidden;
-  border-radius:16px;
-  padding:20px;
-  text-align:center;
-}
 
-.flip-front{
+  backface-visibility:hidden;
+
+  border-radius:30px;
+
+  padding:30px;
+
+  text-align:center;
+
   background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(16px);
 }
 
 .flip-front img{
-  width:90px;
-  height:90px;
+  width:100px;
+  height:100px;
+
   border-radius:50%;
-  margin-top:10px;
+
+  object-fit:cover;
+
+  border:3px solid #67E8F9;
 }
 
 .flip-front h3{
-  margin-top:10px;
+  margin-top:18px;
+
   font-family:'Orbitron';
+
+  font-size:24px;
 }
 
-/* BACK */
+.flip-front p{
+  margin-top:8px;
+  color:#CBD5E1;
+}
+
 .flip-back{
-  background:linear-gradient(135deg,#8a2be2,#00ffc8);
-  color:black;
   transform:rotateY(180deg);
+
   display:flex;
   flex-direction:column;
   justify-content:center;
+  align-items:center;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(103,232,249,0.18),
+  rgba(168,85,247,0.18)
+  );
 }
 
-/* SOCIAL */
-.social a{
-  margin:0 8px;
-  color:black;
-  font-size:18px;
+.flip-back p{
+  color:white;
+  line-height:1.8;
 }
 
+/* MOBILE */
 
+@media(max-width:700px){
 
+  .hero h1{
+    font-size:44px;
+  }
+
+  .nav-links{
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:12px;
+  }
+
+}
 
 </style>
+
 </head>
 
 <body>
 
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
   <a href="index.html" class="logo-wrap">
@@ -310,6 +492,7 @@ body{
   </a>
 
   <ul class="nav-links">
+
     <li><a href="about.html">About</a></li>
     <li><a href="events.html">Events</a></li>
     <li><a href="team.html">Team</a></li>
@@ -317,190 +500,305 @@ body{
     <li><a href="gallery.html">Gallery</a></li>
 
     <li class="dropdown">
+
       <a href="#">Skill Arenas ▾</a>
+
       <ul class="dropdown-menu">
+
         <li><a href="helix-lab.html">Helix Lab</a></li>
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
         <li><a href="appocalypse.html">Appocalypse</a></li>
         <li><a href="aether-arena.html">Aether Arena</a></li>
+
       </ul>
+
     </li>
 
-    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
 
-    <!-- BEFORE LOGIN -->
-    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
-    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+    <li id="joinBtn">
+      <a href="join.html">Join</a>
+    </li>
 
-    <!-- LOGOUT -->
+    <li id="loginBtn">
+      <a href="login.html">Login</a>
+    </li>
+
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
+
 </nav>
 
-<button class="back-btn" onclick="goBack()">← Back</button>
+<button class="back-btn"
+onclick="location.href='index.html'">
 
-<div class="container">
+← Back
+
+</button>
 
 <!-- HERO -->
+
 <div class="hero">
-<h1>Our Team</h1>
+
+  <h1>Our Team</h1>
+
+  <p>
+    Meet the minds building Elyra.
+  </p>
+
 </div>
 
-<!-- 👑 SPOTLIGHT -->
+<!-- FOUNDERS -->
+
 <div class="spotlight">
 
-<div class="spot-card">
-<img src="assets/team/vinayak.jpeg">
-<h3>Vinayak</h3>
-<div class="role">Founder</div>
-<p>Vision & execution of Elyra.</p>
+  <div class="spot-card">
+
+    <img src="assets/team/vinayak.jpeg">
+
+    <h3>Vinayak</h3>
+
+    <div class="role">
+      Founder
+    </div>
+
+    <p>
+      Vision, innovation and execution
+      behind Elyra Club.
+    </p>
+
+  </div>
+
+  <div class="spot-card">
+
+    <img src="assets/team/harshita.jpeg">
+
+    <h3>Harshita</h3>
+
+    <div class="role">
+      Co-Founder
+    </div>
+
+    <p>
+      Creative operations &
+      management lead.
+    </p>
+
+  </div>
+
 </div>
 
-<div class="spot-card">
-<img src="assets/team/harshita.jpeg">
-<h3>Harshita</h3>
-<div class="role">Co-Founder</div>
-<p>Operations & creativity lead.</p>
-</div>
+<!-- TEAM -->
 
-</div>
-
-<!-- ⚙️ ARCHITECTS -->
 <div class="team-grid">
 
-<!-- TECH -->
-<div class="flip-card">
-<div class="flip-inner">
+  <!-- HELIX -->
 
-<div class="flip-front">
-<img src="assets/team/hardware.jpg">
-<h3>Name</h3>
-<p>Tech Architect</p>
-<p>Head Of Helix Lab</p>
+  <div class="flip-card">
+
+    <div class="flip-inner">
+
+      <div class="flip-front">
+
+        <img src="assets/team/hardware.jpg">
+
+        <h3>Name</h3>
+
+        <p>Tech Architect</p>
+
+        <p>Head Of Helix Lab</p>
+
+      </div>
+
+      <div class="flip-back">
+
+        <p>
+          Builds hardware systems,
+          robotics and futuristic prototypes.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- WEB -->
+
+  <div class="flip-card">
+
+    <div class="flip-inner">
+
+      <div class="flip-front">
+
+        <img src="assets/team/web.jpg">
+
+        <h3>Name</h3>
+
+        <p>Web Architect</p>
+
+        <p>Head Of Nexus Forge</p>
+
+      </div>
+
+      <div class="flip-back">
+
+        <p>
+          Creates immersive web experiences
+          and futuristic interfaces.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- APP -->
+
+  <div class="flip-card">
+
+    <div class="flip-inner">
+
+      <div class="flip-front">
+
+        <img src="assets/team/app.jpg">
+
+        <h3>Name</h3>
+
+        <p>App Architect</p>
+
+        <p>Head Of Appocalypse</p>
+
+      </div>
+
+      <div class="flip-back">
+
+        <p>
+          Builds scalable mobile apps
+          and modern digital products.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- GAME -->
+
+  <div class="flip-card">
+
+    <div class="flip-inner">
+
+      <div class="flip-front">
+
+        <img src="assets/team/game.jpg">
+
+        <h3>Name</h3>
+
+        <p>Game Architect</p>
+
+        <p>Head Of Aether Arena</p>
+
+      </div>
+
+      <div class="flip-back">
+
+        <p>
+          Designs immersive games
+          and interactive worlds.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
-<div class="flip-back">
-<p>Builds hardware systems & prototypes.</p>
-
-<div class="social">
-<i class="fab fa-instagram"></i>
-<i class="fab fa-github"></i>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- WEB -->
-<div class="flip-card">
-<div class="flip-inner">
-
-<div class="flip-front">
-<img src="assets/team/web.jpg">
-<h3>Name</h3>
-<p>Web Architect</p>
-<p>Head Of Nexus Forge</p>
-</div>
-
-<div class="flip-back">
-<p>Creates Elyra web experiences.</p>
-</div>
-
-</div>
-</div>
-
-<!-- APP -->
-<div class="flip-card">
-<div class="flip-inner">
-
-<div class="flip-front">
-<img src="assets/team/app.jpg">
-<h3>Name</h3>
-<p>App Architect</p>
-<p>Head Of Appocalypse</p>
-</div>
-
-<div class="flip-back">
-<p>Builds scalable mobile apps.</p>
-</div>
-
-</div>
-</div>
-
-<!-- GAME -->
-<div class="flip-card">
-<div class="flip-inner">
-
-<div class="flip-front">
-<img src="assets/team/game.jpg">
-<h3>Name</h3>
-<p>Game Architect</p>
-<p>Head Of Aether Arena</p>
-</div>
-
-<div class="flip-back">
-<p>Designs immersive games.</p>
-</div>
-
-</div>
-</div>
-
-</div>
-
-
-
-<script>
-function goBack(){ location.href="index.html"; }
-</script>
+<!-- FIREBASE -->
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const app = initializeApp({
+
   apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+
   authDomain:"nova-club-vinayak.firebaseapp.com",
+
   projectId:"nova-club-vinayak"
+
 });
 
 const auth = getAuth(app);
 
-// 🔥 NAVBAR CONTROL
-onAuthStateChanged(auth, (user) => {
+/* NAVBAR ELEMENTS */
 
-  const loginBtn = document.getElementById("loginBtn");
-  const joinBtn = document.getElementById("joinBtn");
-  const dashboardLink = document.getElementById("dashboardLink");
-  const logoutBtn = document.getElementById("logoutBtn");
+const loginBtn =
+document.getElementById("loginBtn");
+
+const joinBtn =
+document.getElementById("joinBtn");
+
+const dashboardLink =
+document.getElementById("dashboardLink");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+/* AUTH CHECK */
+
+onAuthStateChanged(auth,(user)=>{
 
   if(user){
-    if(loginBtn) loginBtn.style.display="none";
-    if(joinBtn) joinBtn.style.display="none";
-    if(dashboardLink) dashboardLink.style.display="block";
-    if(logoutBtn) logoutBtn.style.display="block";
-  } else {
-    if(loginBtn) loginBtn.style.display="block";
-    if(joinBtn) joinBtn.style.display="block";
-    if(dashboardLink) dashboardLink.style.display="none";
-    if(logoutBtn) logoutBtn.style.display="none";
+
+    loginBtn.style.display="none";
+
+    joinBtn.style.display="none";
+
+    dashboardLink.style.display="block";
+
+    logoutBtn.style.display="block";
+
+  }else{
+
+    loginBtn.style.display="block";
+
+    joinBtn.style.display="block";
+
+    dashboardLink.style.display="none";
+
+    logoutBtn.style.display="none";
   }
+
 });
 
-// 🔥 LOGOUT
-const logoutBtn = document.getElementById("logoutBtn");
-if(logoutBtn){
-  logoutBtn.onclick = async ()=>{
-    await signOut(auth);
-    location.reload();
-  };
-}
+/* LOGOUT */
+
+logoutBtn.onclick = async ()=>{
+
+  await signOut(auth);
+
+  location.href="index.html";
+};
+
 </script>
 
 </body>

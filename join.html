@@ -1,107 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Join Elyra</title>
 
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      background: #050505;
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      margin: 0;
-    }
+<title>Join Elyra</title>
 
-    select[multiple] {
-  height: 120px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: white;
-  cursor: pointer;
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-select[multiple] option {
-  padding: 8px;
+body{
+  font-family:'Inter',sans-serif;
+  color:white;
+  overflow-x:hidden;
+
+  background:
+  radial-gradient(circle at top left, rgba(168,85,247,0.18), transparent 30%),
+  radial-gradient(circle at bottom right, rgba(103,232,249,0.18), transparent 30%),
+  linear-gradient(135deg,#0B1020,#111827,#0F172A);
+
+  min-height:100vh;
 }
 
-    .container {
-      padding-top: 120px;
-      display: flex;
-      justify-content: center;
-    }
+/* GRID BG */
 
-    .box {
-      background: #111;
-      padding: 30px;
-      border-radius: 12px;
-      width: 320px;
-      margin-top: 50px;
-    }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
 
-    input, select {
-      width: 100%;
-      margin-bottom: 12px;
-      padding: 10px;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      color: white;
-      border-radius: 6px;
-    }
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
 
-    select[multiple] {
-      height: 120px;
-    }
+  background-size:40px 40px;
 
-    button {
-      width: 100%;
-      padding: 10px;
-      background: linear-gradient(90deg,#00ffc8,#00aaff);
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      color: black;
-      border-radius: 20px;
-      transition: 0.3s;
-    }
+  z-index:-10;
+}
 
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(0,255,200,0.5);
-    }
+/* ===== NAVBAR ===== */
 
-    #msg {
-      margin-top: 10px;
-      text-align: center;
-    }
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:22px 6%;
 
-    .logo{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(10,15,30,0.78);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  z-index:9999;
+}
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+
+.logo-img{
+  width:34px;
+}
+
+.logo-text{
+  font-size:24px;
+  font-family:'Orbitron';
+  font-weight:700;
+
+  background:linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#CBD5E1;
+
+  font-size:15px;
+  font-weight:500;
+
+  transition:0.3s;
+
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+
+  left:0;
+  bottom:-5px;
+
+  width:0%;
+  height:2px;
+
+  background:#67E8F9;
+
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-links a:hover{
+  color:#67E8F9;
+}
+
+/* ===== DROPDOWN ===== */
+
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:40px;
+  left:0;
+
+  background:rgba(15,20,35,0.92);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:16px;
+
+  display:none;
+
+  padding:10px;
+
+  min-width:210px;
+
+  backdrop-filter:blur(16px);
+
+  box-shadow:
+  0 0 30px rgba(103,232,249,0.08);
+}
+
+.dropdown-menu li{
+  list-style:none;
+}
+
+.dropdown-menu a{
+  display:block;
+
+  padding:12px 14px;
+
+  color:#CBD5E1;
+
+  border-radius:10px;
+
+  transition:0.3s;
+}
+
+.dropdown-menu a:hover{
+  color:#67E8F9;
+
+  background:
+  rgba(103,232,249,0.08);
+
+  transform:translateX(4px);
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn-primary{
+  padding:12px 24px;
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  color:black !important;
+  font-weight:700;
+}
+
+.btn-secondary{
+  padding:12px 24px;
+  border-radius:999px;
+
+  border:1px solid #67E8F9;
+
+  color:#67E8F9 !important;
+}
+
+/* ===== FLOATING FLAG ===== */
+
+.hackclub-flag{
+  position:fixed;
+
+  top:78px;
+  left:0;
+
+  width:250px;
+
+  z-index:999;
+
+  animation:floatFlag 3s ease-in-out infinite;
+}
+
+@keyframes floatFlag{
+
+  0%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+  50%{
+    transform:translateY(10px) rotate(2deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:140px 20px 80px;
+}
+
+/* ===== BOX ===== */
+
+.box{
+  width:450px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(20px);
+
+  border-radius:32px;
+
+  padding:40px;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.box::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(255,255,255,0.04),
+  transparent
+  );
+
+  pointer-events:none;
+}
+
+.box h2{
+  font-size:42px;
+
+  font-family:'Orbitron';
+
+  margin-bottom:30px;
+
+  text-align:center;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA,
+  #F472B6
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ===== INPUTS ===== */
+
+input{
+  width:100%;
+
+  padding:15px;
+
+  margin-bottom:18px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,0.06);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  color:white;
+
+  font-size:15px;
+
+  outline:none;
+}
+
+input::placeholder{
+  color:#94A3B8;
+}
+
+/* ===== SKILLS ===== */
+
+.skills-title{
+  margin:20px 0 14px;
+
+  color:#67E8F9;
+
+  font-weight:700;
+}
+
+.skills-box{
+  display:grid;
+  gap:14px;
+
+  margin-bottom:24px;
+}
+
+.skill-card{
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:18px;
+
+  padding:16px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.logo-img{
-  width:32px;
+.skill-card:hover{
+  transform:translateY(-4px);
+
+  border-color:#67E8F9;
+
+  box-shadow:
+  0 0 25px rgba(103,232,249,0.12);
 }
 
-.logo-text{
-  font-size:20px;
-  font-weight:600;
-  background: linear-gradient(90deg,#00f5d4,#9b5cff);
-  -webkit-background-clip:text;
-  color:transparent;
+.skill-card input{
+  width:auto;
+  margin:0;
 }
 
-  </style>
+/* ===== BUTTON ===== */
+
+button{
+  width:100%;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #67E8F9,
+  #A78BFA
+  );
+
+  color:black;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+  0 0 30px rgba(103,232,249,0.2);
+}
+
+/* ===== MESSAGE ===== */
+
+#msg{
+  margin-top:16px;
+  text-align:center;
+  color:#F87171;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:600px){
+
+  .box{
+    width:100%;
+    padding:30px;
+  }
+
+  .nav-links{
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:12px;
+  }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
+<!-- HACK CLUB FLAG -->
+
+<a href="https://hackclub.com"
+target="_blank">
+
+  <img
+  src="assets/images/hackclub-flag.png"
+  class="hackclub-flag">
+
+</a>
+
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
   <a href="index.html" class="logo-wrap">
@@ -110,6 +487,7 @@ select[multiple] option {
   </a>
 
   <ul class="nav-links">
+
     <li><a href="about.html">About</a></li>
     <li><a href="events.html">Events</a></li>
     <li><a href="team.html">Team</a></li>
@@ -117,146 +495,259 @@ select[multiple] option {
     <li><a href="gallery.html">Gallery</a></li>
 
     <li class="dropdown">
+
       <a href="#">Skill Arenas ▾</a>
+
       <ul class="dropdown-menu">
+
         <li><a href="helix-lab.html">Helix Lab</a></li>
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
         <li><a href="appocalypse.html">Appocalypse</a></li>
         <li><a href="aether-arena.html">Aether Arena</a></li>
+
       </ul>
+
     </li>
 
-    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
 
-    <!-- BEFORE LOGIN -->
-    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
-    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+    <li id="joinBtn">
+      <a href="join.html" class="btn-secondary">
+        Join
+      </a>
+    </li>
 
-    <!-- LOGOUT -->
+    <li id="loginBtn">
+      <a href="login.html" class="btn-primary">
+        Login
+      </a>
+    </li>
+
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
+
 </nav>
 
-
-<!-- BACK BUTTON -->
-<button class="back-btn" onclick="goBack()">← Back</button>
-
 <!-- FORM -->
+
 <div class="container">
+
   <div class="box">
 
     <h2>Join Elyra</h2>
 
     <form id="joinForm">
 
-  <input type="text" id="name" placeholder="Full Name" required>
-  <input type="email" id="email" placeholder="Email" required>
-  <input type="password" id="password" placeholder="Password" required>
-  <input type="text" id="class" placeholder="Class" required>
-  <input type="text" id="phone" placeholder="Phone" required>
+      <input type="text"
+      id="name"
+      placeholder="Full Name"
+      required>
 
-  <!-- 🔥 MULTI SELECT -->
-<p class="skills-title">Choose Your Skills</p>
+      <input type="email"
+      id="email"
+      placeholder="Email"
+      required>
 
-<div class="skills-box">
+      <input type="password"
+      id="password"
+      placeholder="Password"
+      required>
 
-  <label class="skill-card">
-    <input type="checkbox" value="web">
-    <span>💻 Web Development</span>
-  </label>
+      <input type="text"
+      id="class"
+      placeholder="Class"
+      required>
 
-  <label class="skill-card">
-    <input type="checkbox" value="app">
-    <span>📱 App Development</span>
-  </label>
+      <input type="text"
+      id="phone"
+      placeholder="Phone"
+      required>
 
-  <label class="skill-card">
-    <input type="checkbox" value="game">
-    <span>🎮 Game Development</span>
-  </label>
+      <!-- SKILLS -->
 
-  <label class="skill-card">
-    <input type="checkbox" value="robotics">
-    <span>🤖 Robotics</span>
-  </label>
+      <p class="skills-title">
+        Choose Your Skills
+      </p>
 
-</div>
+      <div class="skills-box">
 
-  <button type="submit">Join</button>
+        <label class="skill-card">
+          <input type="checkbox" value="web">
+          💻 Web Development
+        </label>
 
-</form>
+        <label class="skill-card">
+          <input type="checkbox" value="app">
+          📱 App Development
+        </label>
+
+        <label class="skill-card">
+          <input type="checkbox" value="game">
+          🎮 Game Development
+        </label>
+
+        <label class="skill-card">
+          <input type="checkbox" value="robotics">
+          🤖 Robotics
+        </label>
+
+      </div>
+
+      <button type="submit">
+        Join Elyra
+      </button>
+
+    </form>
 
     <p id="msg"></p>
 
   </div>
+
 </div>
 
 <!-- FIREBASE -->
+
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+import {
+getFirestore,
+setDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
+
   apiKey: "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
-  authDomain: "nova-club-vinayak.firebaseapp.com",
-  projectId: "nova-club-vinayak",
-  storageBucket: "nova-club-vinayak.firebasestorage.app",
-  messagingSenderId: "515398263626",
-  appId: "1:515398263626:web:bbf69430e0f960f48617b3",
-  measurementId: "G-4HTH6SLMTG"
+
+  authDomain:
+  "nova-club-vinayak.firebaseapp.com",
+
+  projectId:
+  "nova-club-vinayak",
+
+  storageBucket:
+  "nova-club-vinayak.firebasestorage.app",
+
+  messagingSenderId:
+  "515398263626",
+
+  appId:
+  "1:515398263626:web:bbf69430e0f960f48617b3"
+
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
+
 const db = getFirestore(app);
 
-const form = document.getElementById("joinForm");
+const form =
+document.getElementById("joinForm");
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit",
+async(e)=>{
+
   e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const className = document.getElementById("class").value;
-  const phone = document.getElementById("phone").value;
+  const name =
+  document.getElementById("name").value;
 
-  /* 🔥 MULTI SKILLS */
-  const skillOptions = document.getElementById("skills");
- const skills = Array.from(document.querySelectorAll(".skills-box input:checked"))
-  .map(el => el.value);
+  const email =
+  document.getElementById("email").value;
 
-try {
-  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+  const password =
+  document.getElementById("password").value;
 
-  await setDoc(doc(db, "members", userCred.user.uid), {
-    name,
-    email,
-    className,
-    phone,
-    skills
-  });
+  const className =
+  document.getElementById("class").value;
 
-  /* 🔥 YE ADD KAR (IMPORTANT) */
-  localStorage.setItem("type", "join");
-  window.location.href = "success.html";
+  const phone =
+  document.getElementById("phone").value;
 
-} catch (error) {
-  document.getElementById("msg").innerText = error.message;
-}
+  const skills =
+  Array.from(
+  document.querySelectorAll(".skills-box input:checked")
+  ).map(el=>el.value);
+
+  try{
+
+    const userCred =
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    await setDoc(
+      doc(db,"members",userCred.user.uid),
+      {
+        name,
+        email,
+        className,
+        phone,
+        skills
+      }
+    );
+
+    localStorage.setItem("type","join");
+
+    window.location.href="success.html";
+
+  }catch(error){
+
+    document.getElementById("msg").innerText =
+    error.message;
+
+  }
+
 });
 
 </script>
 
-<script type="module" src="js/auth.js"></script>
+<script>
+
+  onAuthStateChanged(auth,(user)=>{
+
+  if(user){
+
+    loginBtn.style.display="none";
+    joinBtn.style.display="none";
+
+    dashboardLink.style.display="block";
+    logoutBtn.style.display="block";
+
+  }else{
+
+    loginBtn.style.display="block";
+    joinBtn.style.display="block";
+
+    dashboardLink.style.display="none";
+    logoutBtn.style.display="none";
+  }
+
+});
+
+logoutBtn.onclick = async ()=>{
+
+  await signOut(auth);
+
+  location.href="index.html";
+};
+
+</script>
 
 </body>
 </html>
