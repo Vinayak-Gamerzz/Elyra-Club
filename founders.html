@@ -5,6 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="icon"
+type="image/png"
+href="assets/images/favicon.png">
+
 <title>Founders - Elyra</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -148,7 +152,7 @@ body::before{
 
 .dropdown-menu{
   position:absolute;
-  top:40px;
+  top:100%;
   left:0;
 
   background:rgba(15,20,35,0.92);
@@ -166,6 +170,25 @@ body::before{
   backdrop-filter:blur(16px);
 
   z-index:99999;
+
+  margin-top:8px;
+
+  transform:translateY(10px);
+
+  transition:0.25s ease;
+}
+
+.dropdown::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:100%;
+
+  width:100%;
+  height:20px;
 }
 
 .dropdown-menu li{
