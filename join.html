@@ -570,14 +570,24 @@ target="_blank">
       placeholder="Full Name"
       required>
 
+      <input type="text"
+      id="age"
+      placeholder="Age"
+      required>
+
       <input type="email"
       id="email"
       placeholder="Email"
       required>
 
-      <input type="password"
-      id="password"
-      placeholder="Password"
+      <input type="text"
+      id="phone"
+      placeholder="Phone"
+      required>
+
+      <input type="text"
+      id="school"
+      placeholder="School"
       required>
 
       <input type="text"
@@ -586,8 +596,8 @@ target="_blank">
       required>
 
       <input type="text"
-      id="phone"
-      placeholder="Phone"
+      id="city"
+      placeholder="City"
       required>
 
       <!-- SKILLS -->
@@ -617,6 +627,11 @@ target="_blank">
           <input type="checkbox" value="robotics">
           🤖 Robotics
         </label>
+
+        <input type="password"
+      id="password"
+      placeholder="Password"
+      required>
 
       </div>
 
@@ -687,17 +702,30 @@ async(e)=>{
   const name =
   document.getElementById("name").value;
 
+  const age =
+  document.getElementById("age").value;
+
   const email =
   document.getElementById("email").value;
 
-  const password =
-  document.getElementById("password").value;
+  const phone =
+  document.getElementById("phone").value;
 
   const className =
   document.getElementById("class").value;
 
-  const phone =
-  document.getElementById("phone").value;
+  const school =
+  document.getElementById("school").value;
+
+  const city =
+  document.getElementById("city").value;
+
+  const password =
+  document.getElementById("password").value;
+
+  
+
+  
 
   const skills =
   Array.from(
@@ -717,9 +745,12 @@ async(e)=>{
       doc(db,"members",userCred.user.uid),
       {
         name,
+        age,
         email,
-        className,
         phone,
+        className,
+        school,
+        city,
         skills
       }
     );
