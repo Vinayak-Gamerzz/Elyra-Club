@@ -1,4 +1,4 @@
-# School-Club-Website
+# Elyra Club Website
 I am making this website for my club in Hack Club
 My website consists of many pages such as, dashboard, login, join, about, gallery, wings, Nexus Forge, Helix Lab, Aether Arena, Appocalypse, and like rhat stuff 
 My website has 4 wings - Nexus Forge - Website Development, Helix Lab - Robotics and Hardware, Aether Arena - Game Development, Appocalypse - App Development.
