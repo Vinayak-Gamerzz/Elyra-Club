@@ -566,6 +566,79 @@ body::before{
 
 }
 
+.footer {
+    background: #050816;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 60px 8% 25px;
+    margin-top: 100px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-brand h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    color: #b8b8d4;
+    line-height: 1.6;
+}
+
+.footer-desc {
+    margin-top: 12px;
+    max-width: 350px;
+}
+
+.footer-links h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.footer-links a {
+    display: block;
+    color: #b8b8d4;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #7c8cff;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    color: #8d8da5;
+    font-size: 0.95rem;
+}
+
+.footer-bottom p:last-child {
+    margin-top: 8px;
+    color: #7c8cff;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-desc {
+        margin: auto;
+    }
+}
+
 </style>
 
 </head>
@@ -823,7 +896,7 @@ onclick="location.href='index.html'">
 
     <div class="progress">
       <div class="progress-bar"
-      style="width:50%"></div>
+      style="width:0%"></div>
     </div>
 
     <a href="https://vibes.hackclub.com"
@@ -879,7 +952,7 @@ onclick="location.href='index.html'">
 
     <div class="progress">
       <div class="progress-bar"
-      style="width:65%"></div>
+      style="width:90%"></div>
     </div>
 
     <a href="https://boba.hackclub.com"
@@ -918,11 +991,11 @@ onclick="location.href='index.html'">
     NEW
     </span>
 
-    <h3>Sprig</h3>
+    <h3>Swirl</h3>
 
     <p>
-      Build interactive browser
-      games using JavaScript.
+      Build an even cooler website with HTML and CSS, 
+      add a unique feature like a favicon.
     </p>
 
     <p>
@@ -930,15 +1003,15 @@ onclick="location.href='index.html'">
     </p>
 
     <p>
-      Time: 3-5 Hours
+      Time: 2-3 Hours
     </p>
 
     <div class="progress">
       <div class="progress-bar"
-      style="width:72%"></div>
+      style="width:0%"></div>
     </div>
 
-    <a href="https://sprig.hackclub.com"
+    <a href="https://swirl.hackclub.com"
     target="_blank">
 
       <button class="view-btn">
@@ -948,16 +1021,16 @@ onclick="location.href='index.html'">
     </a>
 
     <button 
-    id="sprig-btn"
+    id="swirl-btn"
     
     onclick="addToDashboard({
-      id:'sprig',
-      name:'Sprig',
-      desc:'Interactive JavaScript games.',
+      id:'swirl',
+      name:'Swirl',
+      desc:'Build Cool Websites using HTML, CSS.',
       difficulty:'Intermediate',
-      time:'3-5 Hours',
-      reward:'Game Console',
-      link:'https://sprig.hackclub.com'
+      time:'2-3 Hours',
+      reward:'Ice Cream',
+      link:'https://swirl.hackclub.com'
     },this)">
 
     Add to Dashboard
@@ -974,11 +1047,10 @@ onclick="location.href='index.html'">
     HOT
     </span>
 
-    <h3>Neighborhood</h3>
+    <h3>Toppings</h3>
 
     <p>
-      Create websites that help
-      your local community.
+      Add some extra flavor to your website with CSS
     </p>
 
     <p>
@@ -986,15 +1058,15 @@ onclick="location.href='index.html'">
     </p>
 
     <p>
-      Time: 4-6 Hours
+      Time: 30-60 Minutes
     </p>
 
     <div class="progress">
       <div class="progress-bar"
-      style="width:80%"></div>
+      style="width:0%"></div>
     </div>
 
-    <a href="https://neighborhood.hackclub.com"
+    <a href="https://toppings.hackclub.com"
     target="_blank">
 
       <button class="view-btn">
@@ -1004,16 +1076,16 @@ onclick="location.href='index.html'">
     </a>
 
     <button
-    id="neighborhood-btn"
+    id="toppings-btn"
     
     onclick="addToDashboard({
-      id:'neighborhood',
-      name:'Neighborhood',
-      desc:'Community websites.',
+      id:'toppings',
+      name:'Toppings',
+      desc:'Add More Flavor.',
       difficulty:'Intermediate',
-      time:'4-6 Hours',
-      reward:'Community Badge',
-      link:'https://neighborhood.hackclub.com'
+      time:'40-60 Minutes',
+      reward:'More Toppings',
+      link:'https://toppings.hackclub.com'
     },this)">
 
     Add to Dashboard
@@ -1030,11 +1102,10 @@ onclick="location.href='index.html'">
     LIVE
     </span>
 
-    <h3>Hacklet</h3>
+    <h3>Flavorless</h3>
 
     <p>
-      Create mini browser tools
-      and utilities.
+      Build a website using only HTML and JavaScript.
     </p>
 
     <p>
@@ -1047,10 +1118,10 @@ onclick="location.href='index.html'">
 
     <div class="progress">
       <div class="progress-bar"
-      style="width:60%"></div>
+      style="width:0%"></div>
     </div>
 
-    <a href="https://hackclub.com"
+    <a href="https://flavorless.hackclub.com"
     target="_blank">
 
       <button class="view-btn">
@@ -1060,16 +1131,16 @@ onclick="location.href='index.html'">
     </a>
 
     <button 
-    id="hacklet-btn"
+    id="flavorless-btn"
     
     onclick="addToDashboard({
-      id:'hacklet',
-      name:'Hacklet',
-      desc:'Mini web tools.',
-      difficulty:'Beginner',
+      id:'flavorless',
+      name:'Flavorlesst',
+      desc:'Build a website using only HTML and JavaScript..',
+      difficulty:'Intermediate',
       time:'1-2 Hours',
-      reward:'Builder Badge',
-      link:'https://hackclub.com'
+      reward:'Sticker Sheet',
+      link:'https://flavorless.hackclub.com'
     },this)">
 
     Add to Dashboard
@@ -1086,11 +1157,10 @@ onclick="location.href='index.html'">
     PRO
     </span>
 
-    <h3>Portfolio X</h3>
+    <h3>Waffles</h3>
 
     <p>
-      Design your futuristic
-      developer portfolio website.
+      Make a website that uses JavaScript.
     </p>
 
     <p>
@@ -1098,15 +1168,15 @@ onclick="location.href='index.html'">
     </p>
 
     <p>
-      Time: 5-8 Hours
+      Time: 2-3 Hours
     </p>
 
     <div class="progress">
       <div class="progress-bar"
-      style="width:88%"></div>
+      style="width:0%"></div>
     </div>
 
-    <a href="https://hackclub.com"
+    <a href="https://waffles.hackclub.com"
     target="_blank">
 
       <button class="view-btn">
@@ -1116,16 +1186,16 @@ onclick="location.href='index.html'">
     </a>
 
     <button 
-    id="portfolioX-btn"
+    id="waffles-btn"
     
     onclick="addToDashboard({
-      id:'portfoliox',
-      name:'Portfolio X',
-      desc:'Developer portfolio website.',
+      id:'waffles',
+      name:'Waffles',
+      desc:'Make a website that uses JavaScript.',
       difficulty:'Advanced',
-      time:'5-8 Hours',
-      reward:'Portfolio Badge',
-      link:'https://hackclub.com'
+      time:'2-3 Hours',
+      reward:'Waffles',
+      link:'https://waffles.hackclub.com'
     },this)">
 
     Add to Dashboard
@@ -1137,6 +1207,53 @@ onclick="location.href='index.html'">
 </div>
 
 </div>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>Elyra Club</h2>
+      <p>Build • Learn • Create</p>
+      <p class="footer-desc">
+        A teen-led innovation community powered by Hack Club.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="about.html">About</a>
+      <a href="events.html">Events</a>
+      <a href="team.html">Team</a>
+      <a href="founders.html">Founders</a>
+      <a href="https://hackclub.com/conduct">Code Of Conduct</a>
+      <a href="https://hackclub.com/privacy-and-terms">Privacy and Terms</a>
+      <a href="https://hackclub.com/safety">Safety</a>
+      <a href="https://hackclub.com/safeguarding">SafeGuarding</a>
+    </div>
+
+    <div class="footer-links">
+      <h3>Skill Arenas</h3>
+      <a href="nexus-forge.html">Nexus Forge</a>
+      <a href="helix-lab.html">Helix Lab</a>
+      <a href="appocalypse.html">Appocalypse</a>
+      <a href="aether-arena.html">Aether Arena</a>
+    </div>
+
+    <div class="footer-links">
+      <h3>Connect</h3>
+      <a href="https://www.instagram.com/official_elyraclub" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/elyra-club-1212ba417/?isSelfProfile=true target="_blank">LinkedIn</a>
+      <a href="https://github.com/elyra-club-hc" target="_blank">GitHub</a>
+      <a href="mailto:elyraclub@gmail.com">elyra.club@gmail.com</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Elyra Club • Powered by Hack Club </p>
+    <p>From ideas to reality.</p>
+  </div>
+</footer>
 
 <!-- FIREBASE -->
 

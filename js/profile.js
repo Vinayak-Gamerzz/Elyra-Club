@@ -278,14 +278,16 @@ async ()=>{
   });
 
   saveBtn.innerText =
-  "Saved ✅";
+  "Profile Saved ✅";
+
+  saveBtn.disabled = true;
 
   setTimeout(()=>{
 
-    saveBtn.innerText =
-    "Save Profile 🚀";
+    window.location.href =
+    "dashboard.html";
 
-  },2000);
+  },1200);
 };
 
 /* LOGOUT */
